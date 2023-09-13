@@ -18,13 +18,14 @@ class CustomerCreatedMessage implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        private readonly array $customer_data,
+        private readonly array $request
+    ) {}
 
     public function handle(): void
     {
-        //
+        logger($this->customer_data);
+        logger($this->request);
     }
 }

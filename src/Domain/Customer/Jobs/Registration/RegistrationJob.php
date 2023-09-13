@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Customer\Jobs\Registration;
 
+use App\Jobs\Customer\Registration\CustomerCreatedMessage;
 use Domain\Customer\Actions\Registration\RegistrationAction;
 use App\Jobs\Customer\Registration\RegisteredMessage;
 use App\Jobs\Customer\Registration\RegistrationTokenMessage;
@@ -34,8 +35,9 @@ final class RegistrationJob implements ShouldQueue
         )->refresh();
 
         // Publish CustomerCreatedMessage to all microservices
-        RegisteredMessage::dispatch(
-            customer_data: $customer_created
+        CustomerCreatedMessage::dispatch(
+            customer_data: $customer_created,
+            request: $this->request
         );
 
         // Generate the token
