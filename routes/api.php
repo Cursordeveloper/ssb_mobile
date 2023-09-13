@@ -9,5 +9,5 @@ use Illuminate\Support\Facades\Route;
  */
 Route::prefix('v1')
     ->as('v1:')
-    ->middleware(['ip_address', 'allow:GET'])
     ->group(base_path('routes/v1/routes.php'));
+//    ->middleware(['ip_address', 'allow:GET'])
