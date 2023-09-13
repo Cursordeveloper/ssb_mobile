@@ -41,13 +41,13 @@ final class RegistrationJob implements ShouldQueue
         );
 
         // Generate the token
-        $token = GenerateTokenAction::execute(
-            customer: $customer
-        );
+//        $token = GenerateTokenAction::execute(
+//            customer: $customer
+//        );
 
         // Publish the TokenCreated message to the notification service
-        RegistrationTokenMessage::dispatch(
-            token_data: $token->toData()
-        );
+//        RegistrationTokenMessage::dispatch(
+//            token_data: $token->toData()
+//        );
     }
 }
