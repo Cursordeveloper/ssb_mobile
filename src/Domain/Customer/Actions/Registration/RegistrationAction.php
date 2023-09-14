@@ -26,6 +26,12 @@ final class RegistrationAction
                 target: $request,
                 key: 'data.attributes.email'
             ),
+            'password' => Hash::make(
+                data_get(
+                    target: $request,
+                    key: 'data.attributes.password'
+                )
+            ),
         ]);
     }
 }

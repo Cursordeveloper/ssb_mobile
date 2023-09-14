@@ -6,9 +6,9 @@ namespace Domain\Customer\Jobs\Registration;
 
 use App\Jobs\Customer\Registration\CustomerCreatedMessage;
 use Domain\Customer\Actions\Registration\RegistrationAction;
-use App\Jobs\Customer\Registration\RegisteredMessage;
-use App\Jobs\Customer\Registration\RegistrationTokenMessage;
-use Domain\Customer\Actions\Token\GenerateTokenAction;
+//use App\Jobs\Customer\Registration\RegisteredMessage;
+//use App\Jobs\Customer\Registration\RegistrationTokenMessage;
+//use Domain\Customer\Actions\Token\GenerateTokenAction;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -32,11 +32,11 @@ final class RegistrationJob implements ShouldQueue
         // Create the customer
         $customer_created = RegistrationAction::execute(
             request: $this->request
-        )->refresh();
+        );
 
         // Publish CustomerCreatedMessage to all microservices
         CustomerCreatedMessage::dispatch(
-            customer_data: $customer_created,
+            customer_data: $customer_created->toData(),
             request: $this->request
         );
 
