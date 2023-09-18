@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\V1\Customer\Registration\RegistrationActivationController;
 use App\Http\Controllers\V1\Customer\Registration\RegistrationController;
+use App\Http\Controllers\V1\Customer\Registration\RegistrationTokenController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -17,18 +19,18 @@ Route::group([
         )->name(
             name: ''
         );
-//        Route::post(
-//            uri: 'token',
-//            action: RegistrationTokenController::class
-//        )->name(
-//            name: 'token'
-//        );
-//        Route::post(
-//            uri: 'activation',
-//            action: RegistrationActivationController::class
-//        )->name(
-//            name: 'activation'
-//        );
+        Route::post(
+            uri: 'token',
+            action: RegistrationTokenController::class
+        )->name(
+            name: 'token'
+        );
+        Route::post(
+            uri: 'activation',
+            action: RegistrationActivationController::class
+        )->name(
+            name: 'activation'
+        );
     });
 
     // Protected routes

@@ -17,15 +17,14 @@ final class RegistrationRequest extends ApiRequest
     {
         return [
             'data' => ['required'],
-            'data.type' => ['required', 'string', 'in:Customers'],
+
+            'data.type' => ['required', 'string', 'in:Customer'],
 
             'data.attributes' => ['required'],
 
             'data.attributes.first_name' => ['required', 'string'],
             'data.attributes.last_name' => ['required', 'string'],
-
             'data.attributes.phone_number' => ['required', 'min:10', 'unique:customers,phone_number', 'regex:/^([0-9\s\-\+\(\)]*)$/'],
-
             'data.attributes.email' => ['required', 'email', 'unique:customers,email'],
             'data.attributes.password' => ['required', 'between:6,20'],
         ];
@@ -44,19 +43,15 @@ final class RegistrationRequest extends ApiRequest
 
             'data.attributes.first_name.required' => 'The first name is required',
             'data.attributes.first_name.string' => 'The first name must be a string type',
-
             'data.attributes.last_name.required' => 'The last name is required',
             'data.attributes.last_name.string' => 'The last name must be a string type',
-
             'data.attributes.phone_number.required' => 'The phone number is required',
             'data.attributes.phone_number.min' => 'The phone number must not be less than 10 digits',
             'data.attributes.phone_number.unique' => 'The phone number is already taken',
             'data.attributes.phone_number.regex' => 'The phone number is invalid.',
-
             'data.attributes.email.required' => 'The email is required',
             'data.attributes.email.email' => 'The email address is invalid',
             'data.attributes.email.unique' => 'The email address is already taken',
-
             'data.attributes.password.required' => 'The password is required.',
             'data.attributes.password.between' => 'The password length must be between 6 and 20 characters.',
         ];

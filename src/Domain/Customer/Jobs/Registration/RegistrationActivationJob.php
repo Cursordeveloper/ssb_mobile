@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Domain\Customer\Jobs\Registration;
 
 use App\Jobs\Customer\Registration\RegistrationActivatedMessage;
-use Domain\Customer\Actions\Common\FetchCustomerAction;
+use Domain\Customer\Actions\Common\GetCustomerAction;
 use Domain\Customer\Actions\Registration\RegistrationActivationAction;
 use Domain\Customer\Actions\Token\DeleteTokenAction;
 use Illuminate\Bus\Queueable;
@@ -21,17 +21,18 @@ final class RegistrationActivationJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    protected array $request;
-
-    public function __construct(array $request)
-    {
-        $this->request = $request;
+    /**
+     * @param array $request
+     */
+    public function __construct(
+        private readonly array $request
+    ) {
     }
 
     public function handle(): void
     {
         // Get the customer
-        $customer = FetchCustomerAction::execute(
+        $customer = GetCustomerAction::execute(
             request: $this->request
         );
 

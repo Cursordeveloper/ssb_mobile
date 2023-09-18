@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Customer\Models;
 
-use Domain\Shared\Model\HasUuid;
+use Domain\Customer\DTO\CustomerData;
+use Domain\Shared\Models\HasUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -20,16 +21,10 @@ final class Customer extends Authenticatable implements JWTSubject
 
     protected $guarded = ['id'];
 
-    protected $casts = [
-    ];
-
     protected $fillable = [
         'resource_id',
         'first_name',
-        'middle_name',
-        'last_name',
         'phone_number',
-        'pin',
         'email',
         'password',
         'status',
@@ -69,6 +64,20 @@ final class Customer extends Authenticatable implements JWTSubject
         return $this->hasMany(
             related: LinkedAccount::class,
             foreignKey: 'customer_id'
+        );
+    }
+
+    public function toData(): CustomerData
+    {
+        return new CustomerData(
+            id: $this->id,
+            resource_id: $this->resource_id,
+            first_name: $this->first_name,
+            phone_number: $this->phone_number,
+            email: $this->email,
+            status: $this->status,
+            created_at: $this->created_at,
+            updated_at: $this->updated_at
         );
     }
 
