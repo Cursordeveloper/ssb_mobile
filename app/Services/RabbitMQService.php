@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use Exception;
+use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 use PhpAmqpLib\Wire\AMQPTable;
@@ -12,7 +13,7 @@ use PhpAmqpLib\Wire\AMQPTable;
 final class RabbitMQService
 {
     protected AMQPStreamConnection $connection;
-    protected \PhpAmqpLib\Channel\AMQPChannel $channel;
+    protected AMQPChannel $channel;
 
     /**
      * @throws Exception

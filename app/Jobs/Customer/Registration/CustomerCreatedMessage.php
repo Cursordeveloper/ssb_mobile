@@ -12,7 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class CustomerCreatedMessage implements ShouldQueue
+final class CustomerCreatedMessage implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
@@ -22,7 +22,8 @@ class CustomerCreatedMessage implements ShouldQueue
     public function __construct(
         private readonly CustomerData $customer_data,
         private readonly array $request
-    ) {}
+    ) {
+    }
 
     public function handle(): void
     {
@@ -36,22 +37,15 @@ class CustomerCreatedMessage implements ShouldQueue
                     'last_name' => data_get(target: $this->request, key: 'data.attributes.last_name'),
                     'phone_number' => data_get(target: $this->customer_data, key: 'phone_number'),
                     'email' => data_get(target: $this->customer_data, key: 'email'),
-                ]
-            ]
+                ],
+            ],
         ];
         $headers = [
             'message-1' => 'Value1',
-            'message-2' => 'Value2'
+            'message-2' => 'Value2',
         ];
 
         $rabbitMQService = new RabbitMQService();
-        $rabbitMQService->publish(
-            exchange: 'ssb_direct',
-            type: 'direct',
-            queue: 'customer',
-            routingKey: 'ssb_cus',
-            data: $data,
-            headers: $headers
-        );
+        $rabbitMQService->publish(exchange: 'ssb_direct', type: 'direct', queue: 'customer', routingKey: 'ssb_cus', data: $data, headers: $headers);
     }
 }

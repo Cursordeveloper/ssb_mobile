@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\Hash;
 
 final class RegistrationAction
 {
-    public static function execute(array $request): Customer
-    {
+    public static function execute(
+        array $request
+    ): Customer {
         // Create the customer
         return Customer::create([
             'first_name' => data_get(
                 target: $request,
                 key: 'data.attributes.first_name',
-                default: ''
             ),
             'phone_number' => data_get(
                 target: $request,

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Domain\Customer\Models;
 
 use Domain\Customer\DTO\CustomerData;
-use Domain\Shared\Model\HasUuid;
+use Domain\Shared\Models\HasUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -20,8 +20,6 @@ final class Customer extends Authenticatable implements JWTSubject
     protected string $guard = 'customer';
 
     protected $guarded = ['id'];
-
-    protected $casts = [];
 
     protected $fillable = [
         'resource_id',
