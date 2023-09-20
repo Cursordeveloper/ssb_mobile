@@ -8,7 +8,7 @@ use Closure;
 use Domain\Customer\Models\Customer;
 use Illuminate\Contracts\Validation\ValidationRule;
 
-final class HasPinRule implements ValidationRule
+final class CreatePinRule implements ValidationRule
 {
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
@@ -16,8 +16,8 @@ final class HasPinRule implements ValidationRule
         $pin = Customer::query()->where([['email', '=', $value]])->first(columns: 'has_pin');
 
         // Validation conditions
-        if (data_get(target: $pin, key: 'has_pin') === false) {
-            $fail('You have not created your pin.');
+        if (data_get(target: $pin, key: 'has_pin') === true) {
+            $fail('You have already created your pin.');
         }
     }
 }
