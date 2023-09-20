@@ -13,7 +13,7 @@ final class HasPinRule implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         // Fetch the customer pin data
-        $pin = Customer::query()->where(['email', '=', $value])->first();
+        $pin = Customer::query()->where([['email', '=', $value]])->first(columns: 'has_pin');
 
         // Validation conditions
         if (data_get(target: $pin, key: 'has_pin') === false) {
