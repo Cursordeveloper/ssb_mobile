@@ -24,6 +24,7 @@ return new class extends Migration
 
             $table->string(column: 'password')->nullable();
 
+            $table->string(column: 'has_pin')->default(value: false);
             $table->string(column: 'status')->default(CustomerStatus::Pending->value);
 
             // Table timestamps
