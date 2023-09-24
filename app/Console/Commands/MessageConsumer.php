@@ -16,12 +16,12 @@ final class MessageConsumer extends Command
         $rabbitMQService = new RabbitMQService;
         $rabbitMQService->consume(exchange: 'ssb_direct', type: 'direct', queue: 'web', routingKey: 'ssb_web', callback: function ($message) {
 
-//            $headers = $message->has('application_headers') ? $message->get('application_headers')->getNativeData() : [];
+            $headers = $message->get('application_headers')->getNativeData();
 
-            logger(message: $message->get('application_headers')->getNativeData());
-            logger(message: json_decode($message->getBody(), associative: true));
-
-            $message->ack();
+            // Check the actions and call the right class
+            if (data_get(target: $headers, key: 'origin') === 'web'){
+                $message->ack();
+            }
         });
     }
 }
