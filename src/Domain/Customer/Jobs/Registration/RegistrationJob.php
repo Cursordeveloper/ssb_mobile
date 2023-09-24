@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Customer\Jobs\Registration;
 
-use App\Jobs\Customer\Registration\CustomerCreatedMessage;
-use App\Jobs\Customer\Registration\RegistrationTokenMessage;
+use App\Jobs\Customer\Registration\RegisteredEvent;
+use App\Jobs\Customer\Registration\RegistrationTokenEvent;
 use Domain\Customer\Actions\Registration\RegistrationAction;
 use Domain\Customer\Actions\Token\GenerateTokenAction;
 use Illuminate\Bus\Queueable;
@@ -33,8 +33,8 @@ final class RegistrationJob implements ShouldQueue
             request: $this->request
         );
 
-        // Publish CustomerCreatedMessage to all microservices
-        CustomerCreatedMessage::dispatch(
+        // Publish RegisteredEvent to all services
+        RegisteredEvent::dispatch(
             customer_data: $customer_created->toData(),
             request: $this->request
         );
@@ -44,8 +44,8 @@ final class RegistrationJob implements ShouldQueue
             customer: $customer_created
         );
 
-        // Publish the TokenCreated message to the notification service
-        RegistrationTokenMessage::dispatch(
+        // Publish the TokenCreated message to the ssb_notification_service
+        RegistrationTokenEvent::dispatch(
             customer_data: $customer_created->toData(),
             token_data: $token->toData()
         );

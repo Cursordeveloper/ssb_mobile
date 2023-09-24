@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Customer\Jobs\Pin;
 
-use App\Jobs\Customer\Pin\PinCreatedMessage;
-use Domain\Customer\Actions\Common\FetchCustomerAction;
-use Domain\Customer\Actions\Pin\CreatePinAction;
+use App\Jobs\Customer\Pin\CreatePinEvent;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -20,27 +18,14 @@ final class CreatePinJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    protected array $request;
-
-    public function __construct(array $request)
-    {
-        $this->request = $request;
+    public function __construct(
+        private readonly array $request
+    ) {
     }
 
     public function handle(): void
     {
-        // Get the customer
-        $customer = FetchCustomerAction::execute(
-            request: $this->request
-        );
-
-        // Execute the create pin action
-        CreatePinAction::execute(
-            customer: $customer,
-            request: $this->request
-        );
-
-        // Publish PinCreatedMessage to the notification service
-        PinCreatedMessage::dispatch($customer->toData());
+        // Publish a CreatePinEvent
+        CreatePinEvent::dispatch(request: $this->request);
     }
 }

@@ -27,7 +27,7 @@ final class RegistrationTokenRequest extends ApiRequest
             'data.type' => [
                 'required',
                 'string',
-                'in:Customer',
+                'in:Token',
             ],
 
             'data.attributes' => [

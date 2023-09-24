@@ -2,17 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Jobs\Customer\Registration;
+namespace App\Jobs\Customer\Pin;
 
 use App\Services\RabbitMQService;
-use Domain\Customer\DTO\CustomerData;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-final class RegistrationActivatedMessage implements ShouldQueue
+class CreatePinEvent implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
@@ -20,7 +19,7 @@ final class RegistrationActivatedMessage implements ShouldQueue
     use SerializesModels;
 
     public function __construct(
-        private readonly CustomerData $customer_data
+        private readonly array $request
     ) {
     }
 
@@ -28,23 +27,19 @@ final class RegistrationActivatedMessage implements ShouldQueue
     {
         $data = [
             'data' => [
-                'customer' => [
-                    $this->customer_data,
+                'type' => 'Pin',
+                'attributes' => [
+                    'email' => data_get(target: $this->request, key: 'data.attributes.email'),
+                    'pin' => data_get(target: $this->request, key: 'data.attributes.pin'),
                 ],
             ],
         ];
         $headers = [
-            'message' => 'Send welcome notification',
+            'message' => 'Some Message',
+            'action' => 'CreatePinEvent',
         ];
 
         $rabbitMQService = new RabbitMQService();
-        $rabbitMQService->publish(
-            exchange: 'ssb_direct',
-            type: 'direct',
-            queue: 'notification',
-            routingKey: 'ssb_not',
-            data: $data,
-            headers: $headers
-        );
+        $rabbitMQService->publish(exchange: 'ssb_direct', type: 'direct', queue: 'customer', routingKey: 'ssb_cus', data: $data, headers: $headers);
     }
 }

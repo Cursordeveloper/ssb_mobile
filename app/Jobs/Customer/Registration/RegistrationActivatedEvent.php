@@ -6,14 +6,13 @@ namespace App\Jobs\Customer\Registration;
 
 use App\Services\RabbitMQService;
 use Domain\Customer\DTO\CustomerData;
-use Domain\Customer\DTO\TokenData;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-final class RegistrationTokenMessage implements ShouldQueue
+final class RegistrationActivatedEvent implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
@@ -21,21 +20,34 @@ final class RegistrationTokenMessage implements ShouldQueue
     use SerializesModels;
 
     public function __construct(
-        private readonly CustomerData $customer_data,
-        private readonly TokenData $token_data
+        private readonly CustomerData $customer_data
     ) {
     }
 
     public function handle(): void
     {
+        $headers = [
+            'message' => 'Some Message',
+            'action' => 'RegistrationActivatedEvent',
+        ];
         $data = [
             'data' => [
-                'customer' => [$this->customer_data],
-                'token' => [$this->token_data],
+                'type' => 'Customer',
+                'attributes' => [
+                    'first_name' => data_get(
+                        target: $this->customer_data,
+                        key: 'first_name'
+                    ),
+                    'email' => data_get(
+                        target: $this->customer_data,
+                        key: 'email'
+                    ),
+                    'phone_number' => data_get(
+                        target: $this->customer_data,
+                        key: 'phone_number'
+                    ),
+                ],
             ],
-        ];
-        $headers = [
-            'message' => 'Send activation token notification',
         ];
 
         $rabbitMQService = new RabbitMQService();
@@ -45,7 +57,7 @@ final class RegistrationTokenMessage implements ShouldQueue
             queue: 'notification',
             routingKey: 'ssb_not',
             data: $data,
-            headers: $headers,
+            headers: $headers
         );
     }
 }

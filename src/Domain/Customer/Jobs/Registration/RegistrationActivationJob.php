@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Customer\Jobs\Registration;
 
-use App\Jobs\Customer\Registration\RegistrationActivatedMessage;
+use App\Jobs\Customer\Registration\RegistrationActivatedEvent;
 use Domain\Customer\Actions\Common\GetCustomerAction;
 use Domain\Customer\Actions\Registration\RegistrationActivationAction;
 use Domain\Customer\Actions\Token\DeleteTokenAction;
@@ -41,9 +41,9 @@ final class RegistrationActivationJob implements ShouldQueue
             customer: $customer
         );
 
-        // Publish the CustomerActivatedMessage to the notification
+        // Publish the RegistrationActivatedEvent to the ssb_notification_service
         $customer->refresh();
-        RegistrationActivatedMessage::dispatch(
+        RegistrationActivatedEvent::dispatch(
             customer_data: $customer->toData()
         );
 
