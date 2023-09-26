@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
-//use Domain\Shared\Model\Scheme;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 
-function generateToken(string $table, int $length): string
-{
+function generateToken(
+    string $table,
+    int $length
+): string {
     $number = '';
     do {
         for ($i = $length; $i--; $i > 0) {
@@ -17,9 +19,15 @@ function generateToken(string $table, int $length): string
     return $number;
 }
 
-//function getSchemeId(string $resource_id): int
-//{
-//    $scheme = Scheme::where('resource_id', '=', $resource_id)->first();
-//
-//    return data_get(target: $scheme, key: 'id');
-//}
+// Generate bearer token
+function respondWithToken(
+    $token
+): JsonResponse {
+    return response()->json([
+        'access_token' => $token,
+        'token_type' => 'bearer',
+        'expires_in' => auth(
+                guard: 'customer',
+            )->factory(null)->getTTL(null) * 120,
+    ]);
+}

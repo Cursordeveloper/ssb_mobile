@@ -65,7 +65,6 @@ return [
     */
 
     'exclude' => [
-        'src/Domain/Shared/Models/HasUuid.php',
     ],
 
     'add' => [

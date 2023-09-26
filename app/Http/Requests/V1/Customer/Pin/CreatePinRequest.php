@@ -7,7 +7,6 @@ namespace App\Http\Requests\V1\Customer\Pin;
 use App\Http\Requests\Common\ApiRequest;
 use App\Rules\V1\Common\CustomerActiveRule;
 use App\Rules\V1\Customer\Pin\CreatePinRule;
-use App\Rules\V1\Customer\Pin\HasPinRule;
 
 final class CreatePinRequest extends ApiRequest
 {

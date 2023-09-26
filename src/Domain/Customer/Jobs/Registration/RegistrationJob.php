@@ -21,6 +21,9 @@ final class RegistrationJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
+    /**
+     * @param array $request
+     */
     public function __construct(
         private readonly array $request
     ) {

@@ -1,0 +1,32 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Domain\Customer\Actions\Password;
+
+use Domain\Customer\Models\Customer;
+use Illuminate\Support\Facades\Hash;
+
+final class UpdatePasswordAction
+{
+    public static function execute(
+        Customer $customer,
+        array $request
+    ): void {
+        $customer = Customer::query()->where(
+            column: 'id',
+            operator: '=',
+            value: data_get(
+                target: $customer,
+                key: 'id'
+            )
+        )->first();
+        $customer->password = Hash::make(
+            value: data_get(
+                target: $request,
+                key: 'data.attributes.password'
+            )
+        );
+        $customer->save();
+    }
+}

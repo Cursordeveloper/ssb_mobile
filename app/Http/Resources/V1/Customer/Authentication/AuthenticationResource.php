@@ -7,7 +7,7 @@ namespace App\Http\Resources\V1\Customer\Authentication;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AuthenticationResource extends JsonResource
+final class AuthenticationResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
@@ -22,7 +22,7 @@ class AuthenticationResource extends JsonResource
                 'last_name' => $this->resource->last_name,
 
                 'status' => $this->resource->status,
-            ]
+            ],
         ];
     }
 }

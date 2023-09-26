@@ -21,9 +21,6 @@ final class RegistrationActivationJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /**
-     * @param array $request
-     */
     public function __construct(
         private readonly array $request
     ) {
@@ -41,7 +38,7 @@ final class RegistrationActivationJob implements ShouldQueue
             customer: $customer
         );
 
-        // Publish the RegistrationActivatedEvent to the ssb_notification_service
+        // Publish to notification queue
         $customer->refresh();
         RegistrationActivatedEvent::dispatch(
             customer_data: $customer->toData()

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Customer\Actions\Registration;
 
 use Domain\Customer\Models\Customer;
-use Illuminate\Support\Facades\Hash;
 
 final class RegistrationAction
 {
@@ -13,25 +12,13 @@ final class RegistrationAction
         array $request
     ): Customer {
         // Create the customer
-        return Customer::create([
-            'first_name' => data_get(
+        $customer = new Customer(
+            data_get(
                 target: $request,
-                key: 'data.attributes.first_name',
-            ),
-            'phone_number' => data_get(
-                target: $request,
-                key: 'data.attributes.phone_number'
-            ),
-            'email' => data_get(
-                target: $request,
-                key: 'data.attributes.email'
-            ),
-            'password' => Hash::make(
-                data_get(
-                    target: $request,
-                    key: 'data.attributes.password'
-                )
-            ),
-        ]);
+                key: 'data.attributes'
+            )
+        );
+        $customer->save();
+        return $customer->refresh();
     }
 }
