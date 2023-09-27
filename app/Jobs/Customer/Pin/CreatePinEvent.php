@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Jobs\Customer\Pin;
 
 use App\Services\RabbitMQService;
+use Domain\Customer\Models\Customer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -19,24 +20,32 @@ final class CreatePinEvent implements ShouldQueue
     use SerializesModels;
 
     public function __construct(
+        private readonly Customer $customer,
         private readonly array $request
     ) {
     }
 
     public function handle(): void
     {
+        $headers = [
+            'origin' => 'mobile',
+            'action' => 'CreatePinAction',
+        ];
         $data = [
             'data' => [
                 'type' => 'Pin',
                 'attributes' => [
-                    'email' => data_get(target: $this->request, key: 'data.attributes.email'),
                     'pin' => data_get(target: $this->request, key: 'data.attributes.pin'),
                 ],
+                'relationships' => [
+                    'customer' => [
+                        'type' => 'Customer',
+                        'attributes' => [
+                            'resource_id' => data_get(target: $this->customer, key: 'resource_id')
+                        ],
+                    ],
+                ],
             ],
-        ];
-        $headers = [
-            'message' => 'Some Message',
-            'action' => 'CreatePinEvent',
         ];
 
         $rabbitMQService = new RabbitMQService();

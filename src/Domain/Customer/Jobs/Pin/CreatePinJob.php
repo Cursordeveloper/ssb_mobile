@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Customer\Jobs\Pin;
 
 use App\Jobs\Customer\Pin\CreatePinEvent;
+use Domain\Customer\Actions\Common\GetCustomerAction;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -25,7 +26,15 @@ final class CreatePinJob implements ShouldQueue
 
     public function handle(): void
     {
+        // Get the customer
+        $customer = GetCustomerAction::execute(
+            request: $this->request
+        );
+
         // Publish a CreatePinEvent
-        CreatePinEvent::dispatch(request: $this->request);
+        CreatePinEvent::dispatch(
+            customer: $customer,
+            request: $this->request
+        );
     }
 }
