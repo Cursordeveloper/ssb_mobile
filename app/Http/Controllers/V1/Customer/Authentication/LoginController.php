@@ -17,15 +17,6 @@ final class LoginController extends Controller
     public function __invoke(LoginRequest $request, LoginAction $action): JsonResponse
     {
         // Execute the login action and return the resource
-        $token = $action->execute(data: $request->validated());
-
-        // Return loin successful authentication
-        return ResponseBuilder::tokenResponseBuilder(
-            status: true,
-            code: Response::HTTP_OK,
-            message: 'Login successful.',
-            token: respondWithToken($token)->original,
-            user: new AuthenticationResource(auth()->guard(name: 'customer')->user()),
-        );
+        return $action->execute(data: $request->validated());
     }
 }
