@@ -8,23 +8,17 @@ use Domain\Customer\Models\Customer;
 
 final class GetCustomerAction
 {
-    public static function execute(array $request): Customer
+    public static function execute(string $resource): Customer
     {
         // Get the customer
         return Customer::where(
             column: 'email',
             operator: '=',
-            value: data_get(
-                target: $request,
-                key: 'data.attributes.email'
-            )
+            value: $resource
         )->orWhere(
             column: 'resource_id',
             operator: '=',
-            value: data_get(
-                target: $request,
-                key: 'data.attributes.resource_id'
-            )
+            value: $resource
         )->first();
     }
 }

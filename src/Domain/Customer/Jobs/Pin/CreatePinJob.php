@@ -29,12 +29,18 @@ final class CreatePinJob implements ShouldQueue
     {
         // Get the customer
         $customer = GetCustomerAction::execute(
-            request: $this->request
+            resource: data_get(
+                target: $this->request,
+                key: 'data.attributes.email',
+            )
         );
 
         // Publish a CreatePinEvent
         CreatePinEvent::dispatch(
-            PinDTO::toArray(customer: $customer, request: $this->request)
+            PinDTO::toArray(
+                customer: $customer,
+                request: $this->request
+            )
         );
     }
 }

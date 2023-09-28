@@ -11,6 +11,9 @@ use Illuminate\Contracts\Validation\ValidationRule;
 
 final class CustomerStatusRules implements ValidationRule
 {
+    /**
+     * @phpcsSuppress $attribute
+     */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         // Fetch the customer data

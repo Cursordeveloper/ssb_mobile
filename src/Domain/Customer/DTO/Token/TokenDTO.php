@@ -13,22 +13,24 @@ final class TokenDTO
     public static function toArray(Customer $customer, Token $token): array
     {
         return [
-            'data' => [
-                // Resource type and id
-                'type' => 'Token',
+            // Resource type and id
+            'type' => 'Token',
 
-                // Resource exposed attributes
-                'attributes' => [
-                    'token' => data_get(target: $token, key: 'token'),
-                    'token_expiration_date' => data_get(target: $token, key: 'token_expiration_date'),
-                ],
+            // Resource exposed attributes
+            'attributes' => [
+                'token' => data_get(
+                    target: $token,
+                    key: 'token'
+                ),
+                'token_expiration_date' => data_get(
+                    target: $token,
+                    key: 'token_expiration_date'
+                ),
+            ],
 
-                // Included data per the request
-                'included' => [
-                    'customer' => [
-                        CustomerDTO::toArray($customer)
-                    ],
-                ],
+            // Included data per the request
+            'included' => [
+                'customer' => CustomerDTO::toArray($customer),
             ],
         ];
     }

@@ -17,19 +17,19 @@ Route::group([
             uri: '',
             action: RegistrationController::class
         )->name(
-            name: ''
+            name: '',
         );
         Route::post(
             uri: 'token',
             action: RegistrationTokenController::class
         )->name(
-            name: 'token'
+            name: 'token',
         );
         Route::post(
             uri: 'activation',
             action: RegistrationActivationController::class
         )->name(
-            name: 'activation'
+            name: 'activation',
         );
     });
 

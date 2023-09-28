@@ -26,13 +26,14 @@ final class CreatePinEvent implements ShouldQueue
     public function handle(): void
     {
         $headers = ['origin' => 'mobile', 'action' => 'CreatePinAction'];
+        $data = ['data' => $this->data];
         $rabbitMQService = new RabbitMQService();
         $rabbitMQService->publish(
             exchange: 'ssb_direct',
             type: 'direct',
             queue: 'customer',
             routingKey: 'ssb_cus',
-            data: $this->data,
+            data: $data,
             headers: $headers
         );
     }

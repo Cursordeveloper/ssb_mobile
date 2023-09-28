@@ -31,7 +31,10 @@ final class RegistrationActivationJob implements ShouldQueue
     {
         // Get the customer
         $customer = GetCustomerAction::execute(
-            request: $this->request
+            resource: data_get(
+                target: $this->request,
+                key: 'data.attributes.email',
+            )
         );
 
         // Activate the customer account account

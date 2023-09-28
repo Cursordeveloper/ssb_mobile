@@ -12,7 +12,10 @@ final class PinCreatedAction
     {
         // Get the customer with the resource_id
         $customer = GetCustomerAction::execute(
-            request: $data
+            resource: data_get(
+                target: $data,
+                key: 'data.included.customer.attributes.resource_id',
+            )
         );
 
         // Update the customer status

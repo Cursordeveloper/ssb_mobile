@@ -26,13 +26,14 @@ final class RegistrationActivatedEvent implements ShouldQueue
     public function handle(): void
     {
         $headers = ['origin' => 'mobile', 'action' => 'ActivateCustomerAction'];
+        $data = ['data' => $this->data];
         $rabbitMQService = new RabbitMQService();
         $rabbitMQService->publish(
             exchange: 'ssb_fanout',
             type: 'fanout',
             queue: 'mobile',
             routingKey: 'ssb_mob',
-            data: $this->data,
+            data: $data,
             headers: $headers,
         );
     }

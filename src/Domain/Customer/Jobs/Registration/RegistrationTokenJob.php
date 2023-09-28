@@ -30,7 +30,10 @@ final class RegistrationTokenJob implements ShouldQueue
     {
         // Get the customer
         $customer = GetCustomerAction::execute(
-            request: $this->request
+            resource: data_get(
+                target: $this->request,
+                key: 'data.attributes.email',
+            )
         );
 
         // Generate the token

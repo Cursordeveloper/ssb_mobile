@@ -26,13 +26,14 @@ final class TokenEvent implements ShouldQueue
     public function handle(): void
     {
         $headers = ['origin' => 'mobile', 'action' => 'SendRegistrationTokenAction'];
+        $data = ['data' => $this->data];
         $rabbitMQService = new RabbitMQService();
         $rabbitMQService->publish(
             exchange: 'ssb_direct',
             type: 'direct',
             queue: 'notification',
             routingKey: 'ssb_not',
-            data: $this->data,
+            data: $data,
             headers: $headers,
         );
     }
