@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Jobs\Customer\Pin;
 
 use App\Services\RabbitMQService;
-use Domain\Customer\Models\Customer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -20,35 +19,21 @@ final class CreatePinEvent implements ShouldQueue
     use SerializesModels;
 
     public function __construct(
-        private readonly Customer $customer,
-        private readonly array $request
+        private readonly array $data,
     ) {
     }
 
     public function handle(): void
     {
-        $headers = [
-            'origin' => 'mobile',
-            'action' => 'CreatePinAction',
-        ];
-        $data = [
-            'data' => [
-                'type' => 'Pin',
-                'attributes' => [
-                    'pin' => data_get(target: $this->request, key: 'data.attributes.pin'),
-                ],
-                'relationships' => [
-                    'customer' => [
-                        'type' => 'Customer',
-                        'attributes' => [
-                            'resource_id' => data_get(target: $this->customer, key: 'resource_id')
-                        ],
-                    ],
-                ],
-            ],
-        ];
-
+        $headers = ['origin' => 'mobile', 'action' => 'CreatePinAction'];
         $rabbitMQService = new RabbitMQService();
-        $rabbitMQService->publish(exchange: 'ssb_direct', type: 'direct', queue: 'customer', routingKey: 'ssb_cus', data: $data, headers: $headers);
+        $rabbitMQService->publish(
+            exchange: 'ssb_direct',
+            type: 'direct',
+            queue: 'customer',
+            routingKey: 'ssb_cus',
+            data: $this->data,
+            headers: $headers
+        );
     }
 }

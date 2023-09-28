@@ -18,6 +18,7 @@ return new class extends Migration
 
             // Table main attributes
             $table->string(column: 'first_name')->nullable();
+            $table->string(column: 'last_name')->nullable();
 
             $table->string(column: 'email')->unique()->nullable();
             $table->string(column: 'phone_number')->unique()->nullable();

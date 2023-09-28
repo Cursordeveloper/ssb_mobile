@@ -8,6 +8,7 @@ use App\Jobs\Customer\Registration\RegistrationActivatedEvent;
 use Domain\Customer\Actions\Common\GetCustomerAction;
 use Domain\Customer\Actions\Registration\RegistrationActivationAction;
 use Domain\Customer\Actions\Token\DeleteTokenAction;
+use Domain\Customer\DTO\Registration\CustomerDTO;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -41,7 +42,7 @@ final class RegistrationActivationJob implements ShouldQueue
         // Publish to notification queue
         $customer->refresh();
         RegistrationActivatedEvent::dispatch(
-            customer_data: $customer->toData()
+            CustomerDTO::toArray(customer: $customer)
         );
 
         // Delete the token after activation

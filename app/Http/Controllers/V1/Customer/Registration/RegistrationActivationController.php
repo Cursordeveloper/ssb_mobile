@@ -18,7 +18,7 @@ final class RegistrationActivationController extends Controller
         // Dispatch the AccountActivationJob
         RegistrationActivationJob::dispatch(request: $request->validated());
 
-        // Return the resourceResponseBuilder with the CustomerResource as data
+        // Return the resourceResponseBuilder
         return ResponseBuilder::resourcesResponseBuilder(
             status: true,
             code: Response::HTTP_ACCEPTED,

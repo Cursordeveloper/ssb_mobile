@@ -21,15 +21,16 @@ final class MessageConsumer extends Command
             // Check the actions and call the right class
             if (data_get(target: $headers, key: 'origin') === 'mobile') {
                 $message->ack();
-            }
-            elseif (data_get(target: $headers, key: 'action') === 'PinCreatedAction'){
+            } elseif (data_get(target: $headers, key: 'action') === 'PinCreatedAction') {
                 $register = PinCreatedAction::execute(
                     json_decode(
                         json: $message->getBody(),
                         associative: true
                     )
                 );
-                if ($register) $message->ack();
+                if ($register) {
+                    $message->ack();
+                }
             }
         });
     }

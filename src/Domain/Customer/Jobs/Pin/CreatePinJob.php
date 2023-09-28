@@ -6,6 +6,7 @@ namespace Domain\Customer\Jobs\Pin;
 
 use App\Jobs\Customer\Pin\CreatePinEvent;
 use Domain\Customer\Actions\Common\GetCustomerAction;
+use Domain\Customer\DTO\Pin\PinDTO;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -33,8 +34,7 @@ final class CreatePinJob implements ShouldQueue
 
         // Publish a CreatePinEvent
         CreatePinEvent::dispatch(
-            customer: $customer,
-            request: $this->request
+            PinDTO::toArray(customer: $customer, request: $this->request)
         );
     }
 }

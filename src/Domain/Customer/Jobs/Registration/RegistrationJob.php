@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Domain\Customer\Jobs\Registration;
 
 use App\Jobs\Customer\Registration\RegisteredEvent;
-use App\Jobs\Customer\Registration\RegistrationTokenEvent;
+use App\Jobs\Customer\Token\TokenEvent;
 use Domain\Customer\Actions\Registration\RegistrationAction;
 use Domain\Customer\Actions\Token\GenerateTokenAction;
+use Domain\Customer\DTO\Registration\CustomerDTO;
+use Domain\Customer\DTO\Token\TokenDTO;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -21,9 +23,6 @@ final class RegistrationJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /**
-     * @param array $request
-     */
     public function __construct(
         private readonly array $request
     ) {
@@ -38,8 +37,7 @@ final class RegistrationJob implements ShouldQueue
 
         // Publish RegisteredEvent to all services
         RegisteredEvent::dispatch(
-            customer_data: $customer_created->toData(),
-            request: $this->request
+            CustomerDTO::toArray(customer: $customer_created)
         );
 
         // Generate the token
@@ -48,9 +46,8 @@ final class RegistrationJob implements ShouldQueue
         );
 
         // Publish the TokenCreated message to the ssb_notification_service
-        RegistrationTokenEvent::dispatch(
-            customer_data: $customer_created->toData(),
-            token_data: $token->toData()
+        TokenEvent::dispatch(
+            TokenDTO::toArray(customer: $customer_created, token: $token)
         );
     }
 }
