@@ -15,10 +15,6 @@ final class GetCustomerAction
             column: 'email',
             operator: '=',
             value: $resource
-        )->orWhere(
-            column: 'resource_id',
-            operator: '=',
-            value: $resource
         )->first();
     }
 }

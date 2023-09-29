@@ -9,10 +9,8 @@ use Illuminate\Support\Facades\Hash;
 
 final class UpdatePasswordAction
 {
-    public static function execute(
-        Customer $customer,
-        array $request
-    ): void {
+    public static function execute(Customer $customer, array $request): bool
+    {
         $customer = Customer::query()->where(
             column: 'id',
             operator: '=',
@@ -27,6 +25,6 @@ final class UpdatePasswordAction
                 key: 'data.attributes.password'
             )
         );
-        $customer->save();
+        return $customer->save();
     }
 }

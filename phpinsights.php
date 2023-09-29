@@ -114,6 +114,9 @@ return [
             'lineLimit' => 200,
             'absoluteLineLimit' => 220
         ],
+        SlevomatCodingStandard\Sniffs\Functions\FunctionLengthSniff::class => [
+            'maxLinesLength' => 50,
+        ]
     ],
 
     /*

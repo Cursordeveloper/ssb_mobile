@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Domain\Customer\Jobs\Registration;
+namespace Domain\Customer\Jobs\Password;
 
-use App\Jobs\Customer\Token\TokenEvent;
+use App\Jobs\Customer\Password\PasswordResetRequestEvent;
 use Domain\Customer\Actions\Common\GetCustomerAction;
 use Domain\Customer\Actions\Token\GenerateTokenAction;
 use Domain\Customer\DTO\Token\TokenDTO;
@@ -14,7 +14,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-final class RegistrationTokenJob implements ShouldQueue
+final class PasswordResetRequestJob implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
@@ -36,16 +36,16 @@ final class RegistrationTokenJob implements ShouldQueue
             )
         );
 
-        // Generate the token
+        // Generate password reset token
         $token = GenerateTokenAction::execute(
-            customer: $customer,
+            customer: $customer
         );
 
-        // Publish the RegistrationTokenMessage to the ssb_notification_service
-        TokenEvent::dispatch(
+        // Publish the PasswordResetRequestMessage to the notification service
+        PasswordResetRequestEvent::dispatch(
             TokenDTO::toArray(
                 customer: $customer,
-                token: $token,
+                token: $token
             )
         );
     }

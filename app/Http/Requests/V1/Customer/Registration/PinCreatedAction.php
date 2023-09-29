@@ -14,7 +14,7 @@ final class PinCreatedAction
         $customer = GetCustomerAction::execute(
             resource: data_get(
                 target: $data,
-                key: 'data.included.customer.attributes.resource_id',
+                key: 'data.included.customer.attributes.email',
             )
         );
 

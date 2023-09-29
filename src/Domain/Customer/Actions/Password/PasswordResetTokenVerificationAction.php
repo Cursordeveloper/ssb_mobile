@@ -9,9 +9,8 @@ use Domain\Customer\Models\Token;
 
 final class PasswordResetTokenVerificationAction
 {
-    public static function execute(
-        Customer $customer
-    ): void {
+    public static function execute(Customer $customer): bool
+    {
         $token = Token::query()->where(
             column: 'customer_id',
             operator: '=',
@@ -22,6 +21,6 @@ final class PasswordResetTokenVerificationAction
         )->first();
 
         $token->is_verified = true;
-        $token->save();
+        return $token->save();
     }
 }
