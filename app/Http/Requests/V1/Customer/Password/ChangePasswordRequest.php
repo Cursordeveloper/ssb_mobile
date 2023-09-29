@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Requests\V1\Customer\Password;
 
 use App\Http\Requests\Common\ApiRequest;
-use App\Rules\V1\Common\CustomerActiveRule;
+use App\Rules\V1\Common\AuthenticatedCustomerStatusRule;
 use App\Rules\V1\Customer\Password\ChangePasswordRules;
 
 final class ChangePasswordRequest extends ApiRequest
@@ -21,8 +21,7 @@ final class ChangePasswordRequest extends ApiRequest
             'data' => ['required'],
             'data.type' => ['required', 'string', 'in:Password'],
 
-            'data.attributes.email' => ['required'],
-            'data.attributes.current_password' => ['required', new CustomerActiveRule(), new ChangePasswordRules()],
+            'data.attributes.current_password' => ['required', new AuthenticatedCustomerStatusRule(), new ChangePasswordRules()],
             'data.attributes.password' => ['required', 'between:6,20', 'confirmed'],
         ];
     }

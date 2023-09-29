@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Requests\V1\Customer\Password;
 
 use App\Http\Requests\Common\ApiRequest;
-use App\Rules\V1\Common\CustomerActiveRule;
+use App\Rules\V1\Common\UnauthenticatedCustomerStatusRule;
 use App\Rules\V1\Customer\Token\IsTokenValidRules;
 
 final class PasswordResetTokenVerificationRequest extends ApiRequest
@@ -21,7 +21,7 @@ final class PasswordResetTokenVerificationRequest extends ApiRequest
             'data' => ['required'],
             'data.type' => ['required', 'string', 'in:Token'],
 
-            'data.attributes.email' => ['required', 'exists:customers,email', new CustomerActiveRule(), new IsTokenValidRules()],
+            'data.attributes.email' => ['required', 'exists:customers,email', new UnauthenticatedCustomerStatusRule(), new IsTokenValidRules()],
             'data.attributes.token' => ['required', 'exists:tokens,token'],
         ];
     }

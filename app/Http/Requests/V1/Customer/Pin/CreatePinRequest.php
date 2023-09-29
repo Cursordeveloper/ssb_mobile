@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Requests\V1\Customer\Pin;
 
 use App\Http\Requests\Common\ApiRequest;
-use App\Rules\V1\Common\CustomerActiveRule;
+use App\Rules\V1\Common\UnauthenticatedCustomerStatusRule;
 use App\Rules\V1\Customer\Pin\CreatePinRule;
 
 final class CreatePinRequest extends ApiRequest
@@ -21,7 +21,7 @@ final class CreatePinRequest extends ApiRequest
             'data' => ['required'],
             'data.type' => ['required', 'string', 'in:Pins'],
 
-            'data.attributes.email' => ['required', 'exists:customers,email', new CustomerActiveRule(), new CreatePinRule()],
+            'data.attributes.email' => ['required', 'exists:customers,email', new UnauthenticatedCustomerStatusRule(), new CreatePinRule()],
             'data.attributes.pin' => ['required', 'integer', 'digits_between:4,4', 'confirmed'],
         ];
     }

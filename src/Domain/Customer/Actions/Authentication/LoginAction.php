@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class LoginAction
 {
-    public function execute(array $data): JsonResponse
+    public static function execute(array $data): JsonResponse
     {
         // Attempt login
         $token = auth()

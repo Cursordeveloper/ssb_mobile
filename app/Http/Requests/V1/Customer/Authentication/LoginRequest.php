@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Requests\V1\Customer\Authentication;
 
 use App\Http\Requests\Common\ApiRequest;
-use App\Rules\V1\Common\CustomerActiveRule;
+use App\Rules\V1\Common\UnauthenticatedCustomerStatusRule;
 use App\Rules\V1\Customer\Pin\HasPinRule;
 
 final class LoginRequest extends ApiRequest
@@ -21,7 +21,7 @@ final class LoginRequest extends ApiRequest
             'data' => ['required', 'array'],
             'data.type' => ['required', 'in:Customers'],
 
-            'data.attributes.email' => ['required', 'email', new CustomerActiveRule(), new HasPinRule()],
+            'data.attributes.email' => ['required', 'email', new UnauthenticatedCustomerStatusRule(), new HasPinRule()],
             'data.attributes.password' => ['required', 'string'],
         ];
     }

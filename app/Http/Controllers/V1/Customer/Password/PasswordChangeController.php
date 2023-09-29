@@ -7,7 +7,8 @@ namespace App\Http\Controllers\V1\Customer\Password;
 use App\Common\ResponseBuilder;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Customer\Password\ChangePasswordRequest;
-use Domain\Customer\Jobs\Password\ChangePasswordJob;
+use Domain\Customer\Jobs\Password\ChangePassword;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -15,15 +16,23 @@ final class PasswordChangeController extends Controller
 {
     public function __invoke(ChangePasswordRequest $request): JsonResponse
     {
-        // Dispatch ChangePasswordJob
-        ChangePasswordJob::dispatch(request: $request->validated());
+        $change_password = ChangePassword::execute(
+            request: $request->validated()
+        );
 
-        // Return the resourceResponseBuilder with the CustomerResource as data
+        if ($change_password) {
+            return ResponseBuilder::resourcesResponseBuilder(
+                status: true,
+                code: Response::HTTP_OK,
+                message: 'Request successful.',
+                description: 'Your password has been change successfully.',
+            );
+        }
         return ResponseBuilder::resourcesResponseBuilder(
             status: true,
-            code: Response::HTTP_ACCEPTED,
-            message: 'Request accepted.',
-            description: 'Change password in progress. Notification will be sent shortly.',
+            code: Response::HTTP_SERVICE_UNAVAILABLE,
+            message: 'Request aborted.',
+            description: 'There was a problem. Try again later.',
         );
     }
 }

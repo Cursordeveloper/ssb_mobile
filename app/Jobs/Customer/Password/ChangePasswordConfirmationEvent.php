@@ -11,7 +11,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-final class PasswordResetConfirmationEvent implements ShouldQueue
+final class ChangePasswordConfirmationEvent implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
@@ -27,7 +27,7 @@ final class PasswordResetConfirmationEvent implements ShouldQueue
     {
         $headers = [
             'origin' => 'mobile',
-            'action' => 'SendPasswordResetConfirmationAction'
+            'action' => 'SendPasswordChangeConfirmationAction'
         ];
         $data = [
             'data' => $this->data
