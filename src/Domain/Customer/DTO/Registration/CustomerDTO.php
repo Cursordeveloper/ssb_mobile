@@ -13,10 +13,6 @@ final class CustomerDTO
         return [
             // Resource type and id
             'type' => 'Customer',
-            'id' => data_get(
-                target: $customer,
-                key: 'id'
-            ),
 
             // Resource exposed attributes
             'attributes' => [
