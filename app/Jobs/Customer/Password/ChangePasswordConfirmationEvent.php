@@ -27,10 +27,10 @@ final class ChangePasswordConfirmationEvent implements ShouldQueue
     {
         $headers = [
             'origin' => 'mobile',
-            'action' => 'SendPasswordChangeConfirmationAction'
+            'action' => 'SendPasswordChangeConfirmationAction',
         ];
         $data = [
-            'data' => $this->data
+            'data' => $this->data,
         ];
 
         $rabbitMQService = new RabbitMQService();

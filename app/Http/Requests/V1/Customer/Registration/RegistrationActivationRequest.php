@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\V1\Customer\Registration;
 
-use App\Http\Requests\Common\ApiRequest;
+use App\Http\Requests\Shared\ApiRequest;
 use App\Rules\V1\Customer\Registration\CustomerStatusRules;
 use App\Rules\V1\Customer\Token\IsTokenValidRules;
 

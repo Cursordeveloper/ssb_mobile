@@ -14,11 +14,9 @@ final class UnauthenticatedCustomerStatusRule implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         // Fetch the customer status
-        $status = Customer::query()->where([[
-            'email', '=', $value
-        ]])->first(
-            columns: 'status'
-        );
+        $status = Customer::query()
+            ->where([['email', '=', $value]])
+            ->first(columns: 'status');
 
         // Validation conditions
         if (data_get(target: $status, key: 'status') !== CustomerStatus::Active->value) {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\V1\Customer\LinkedAccount;
 
-use App\Http\Requests\Common\ApiRequest;
+use App\Http\Requests\Shared\ApiRequest;
 
 final class LinkAccountRequest extends ApiRequest
 {

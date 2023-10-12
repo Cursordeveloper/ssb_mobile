@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\V1\Customer\Password;
 
-use App\Http\Requests\Common\ApiRequest;
+use App\Http\Requests\Shared\ApiRequest;
 use App\Rules\V1\Common\UnauthenticatedCustomerStatusRule;
 
 final class PasswordRequest extends ApiRequest

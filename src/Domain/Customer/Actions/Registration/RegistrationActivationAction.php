@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Customer\Actions\Registration;
 
 use Domain\Customer\Enums\CustomerStatus;
+use Domain\Customer\Events\Registration\CustomerActivatedEvent;
 use Domain\Customer\Models\Customer;
 
 final class RegistrationActivationAction
@@ -16,5 +17,10 @@ final class RegistrationActivationAction
         $customer->update([
             'status' => CustomerStatus::Active->value,
         ]);
+
+        // Dispatch CustomerActivatedEvent
+        CustomerActivatedEvent::dispatch(
+            $customer->refresh(),
+        );
     }
 }

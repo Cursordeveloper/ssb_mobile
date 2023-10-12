@@ -27,10 +27,10 @@ final class PasswordResetConfirmationEvent implements ShouldQueue
     {
         $headers = [
             'origin' => 'mobile',
-            'action' => 'SendPasswordResetConfirmationAction'
+            'action' => 'SendPasswordResetConfirmationAction',
         ];
         $data = [
-            'data' => $this->data
+            'data' => $this->data,
         ];
 
         $rabbitMQService = new RabbitMQService();

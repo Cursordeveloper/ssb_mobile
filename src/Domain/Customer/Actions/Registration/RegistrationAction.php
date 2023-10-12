@@ -19,6 +19,7 @@ final class RegistrationAction
             )
         );
         $customer->save();
+
         return $customer->refresh();
     }
 }

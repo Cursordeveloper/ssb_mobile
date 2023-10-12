@@ -6,7 +6,7 @@ namespace Domain\Customer\Jobs\Password;
 
 use App\Jobs\Customer\Password\PasswordResetRequestEvent;
 use Domain\Customer\Actions\Common\GetCustomerAction;
-use Domain\Customer\Actions\Token\GenerateTokenAction;
+use Domain\Customer\Actions\Common\Token\GenerateTokenAction;
 use Domain\Customer\DTO\Token\TokenDTO;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

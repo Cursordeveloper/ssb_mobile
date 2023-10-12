@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Customer\Models;
 
+use Domain\Customer\Events\Registration\CustomerCreatedEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,6 +15,10 @@ final class Customer extends Authenticatable implements JWTSubject
     use HasFactory;
 
     protected string $guard = 'customer';
+
+    protected $dispatchesEvents = [
+        'created' => CustomerCreatedEvent::class,
+    ];
 
     protected $guarded = ['id'];
 

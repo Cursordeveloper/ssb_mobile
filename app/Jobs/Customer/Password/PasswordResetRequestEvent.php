@@ -25,8 +25,14 @@ final class PasswordResetRequestEvent implements ShouldQueue
 
     public function handle(): void
     {
-        $headers = ['origin' => 'mobile', 'action' => 'SendPasswordResetRequestAction'];
-        $data = ['data' => $this->data];
+        $headers = [
+            'origin' => 'mobile',
+            'action' => 'SendPasswordResetRequestAction',
+        ];
+        $data = [
+            'data' => $this->data,
+        ];
+
         $rabbitMQService = new RabbitMQService();
         $rabbitMQService->publish(
             exchange: 'ssb_direct',

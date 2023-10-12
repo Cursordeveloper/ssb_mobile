@@ -8,7 +8,6 @@ use App\Common\ResponseBuilder;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Customer\Password\ChangePasswordRequest;
 use Domain\Customer\Jobs\Password\ChangePassword;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 

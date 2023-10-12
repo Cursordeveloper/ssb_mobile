@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use App\Http\Requests\V1\Customer\Registration\PinCreatedAction;
 use App\Services\RabbitMQService;
+use Domain\Customer\Actions\Pin\PinCreatedAction;
 use Illuminate\Console\Command;
 
 final class MessageConsumer extends Command

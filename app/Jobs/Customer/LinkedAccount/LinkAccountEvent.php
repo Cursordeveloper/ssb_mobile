@@ -27,10 +27,10 @@ final class LinkAccountEvent implements ShouldQueue
     {
         $headers = [
             'origin' => 'mobile',
-            'action' => 'LinkAccountAction'
+            'action' => 'LinkAccountAction',
         ];
         $data = [
-            'data' => $this->data
+            'data' => $this->data,
         ];
 
         $rabbitMQService = new RabbitMQService();

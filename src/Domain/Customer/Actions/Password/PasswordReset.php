@@ -6,7 +6,7 @@ namespace Domain\Customer\Actions\Password;
 
 use App\Jobs\Customer\Password\PasswordResetConfirmationEvent;
 use Domain\Customer\Actions\Common\GetCustomerAction;
-use Domain\Customer\Actions\Token\DeleteTokenAction;
+use Domain\Customer\Actions\Common\Token\DeleteTokenAction;
 use Domain\Customer\DTO\Registration\CustomerDTO;
 
 final class PasswordReset
