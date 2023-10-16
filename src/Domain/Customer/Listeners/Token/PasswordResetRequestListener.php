@@ -6,18 +6,18 @@ use App\Services\RabbitMQService;
 use Domain\Customer\DTO\Token\TokenDTO;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-final class PublishTokenListener implements ShouldQueue
+final class PasswordResetRequestListener implements ShouldQueue
 {
     public function handle(
         object $event,
     ): void {
         $headers = [
             'origin' => 'mobile',
-            'action' => 'SendRegistrationTokenAction',
+            'action' => 'SendPasswordResetRequestAction',
         ];
         $data = [
             'data' => TokenDTO::toArray(
-                $event->token,
+                $event->data,
             ),
         ];
 

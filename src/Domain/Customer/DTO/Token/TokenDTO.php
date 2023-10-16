@@ -9,8 +9,9 @@ use Domain\Customer\Models\Token;
 
 final class TokenDTO
 {
-    public static function toArray(Token $token): array
-    {
+    public static function toArray(
+        Token $token,
+    ): array {
         return [
             // Resource type and id
             'type' => 'Token',

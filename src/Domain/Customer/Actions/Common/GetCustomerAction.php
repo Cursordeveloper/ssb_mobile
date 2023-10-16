@@ -8,8 +8,9 @@ use Domain\Customer\Models\Customer;
 
 final class GetCustomerAction
 {
-    public static function execute(string $resource): Customer
-    {
+    public static function execute(
+        string $resource,
+    ): Customer {
         // Get the customer
         return Customer::where(
             column: 'email',

@@ -11,8 +11,9 @@ use Domain\Customer\Models\Token;
 
 final class GenerateTokenAction
 {
-    public static function execute(Customer $customer): void
-    {
+    public static function execute(
+        Customer $customer,
+    ): void {
         // Generate and store the token
         $token_created = Token::updateOrCreate([
             'customer_id' => data_get(

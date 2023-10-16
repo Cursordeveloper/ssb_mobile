@@ -37,16 +37,8 @@ final class PasswordResetRequestJob implements ShouldQueue
         );
 
         // Generate password reset token
-        $token = GenerateTokenAction::execute(
-            customer: $customer
-        );
-
-        // Publish the PasswordResetRequestMessage to the notification service
-        PasswordResetRequestEvent::dispatch(
-            TokenDTO::toArray(
-                customer: $customer,
-                token: $token
-            )
+        GenerateTokenAction::execute(
+            customer: $customer,
         );
     }
 }

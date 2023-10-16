@@ -11,6 +11,7 @@ use Domain\Customer\Listeners\Registration\CustomerActivatedListener;
 use Domain\Customer\Listeners\Registration\CustomerCreatedListener;
 use Domain\Customer\Listeners\Token\CreateTokenListener;
 use Domain\Customer\Listeners\Token\DeleteTokenListener;
+use Domain\Customer\Listeners\Token\PasswordResetRequestListener;
 use Domain\Customer\Listeners\Token\PublishTokenListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -32,6 +33,7 @@ final class EventServiceProvider extends ServiceProvider
         ],
         TokenCreatedEvent::class => [
             PublishTokenListener::class,
+            PasswordResetRequestListener::class,
         ],
     ];
 
