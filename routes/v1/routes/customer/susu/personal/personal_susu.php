@@ -12,7 +12,7 @@ Route::group([
     Route::group([
         'middleware' => 'auth:customer',
     ], function (): void {
-
+        // CreatePersonalSusu route
         Route::post(
             uri: '',
             action: CreatePersonalSusuController::class
@@ -20,12 +20,12 @@ Route::group([
             name: 'store'
         );
 
+        // PersonalSusuCollection route
         Route::get(
             uri: '',
             action: CreatePersonalSusuController::class
         )->name(
             name: 'index'
         );
-
     });
 });
