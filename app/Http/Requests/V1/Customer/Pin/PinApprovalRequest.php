@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests\V1\Customer\LinkedAccount;
+namespace App\Http\Requests\V1\Customer\Pin;
 
 use App\Http\Requests\Shared\ApiRequest;
 
-final class LinkAccountApprovalRequest extends ApiRequest
+final class PinApprovalRequest extends ApiRequest
 {
     public function authorize(): bool
     {
