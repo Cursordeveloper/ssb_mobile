@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Requests\V1\Customer\Pin;
 
 use App\Http\Requests\Shared\ApiRequest;
-use App\Rules\V1\Customer\Pin\ChangePinRules;
 
 final class ChangePinRequest extends ApiRequest
 {
@@ -20,7 +19,7 @@ final class ChangePinRequest extends ApiRequest
             'data' => ['required'],
             'data.type' => ['required', 'string', 'in:Pin'],
 
-            'data.attributes.current_pin' => ['required', new ChangePinRules()],
+            'data.attributes.current_pin' => ['required'],
             'data.attributes.pin' => ['required', 'integer', 'digits_between:4,4', 'confirmed'],
         ];
     }

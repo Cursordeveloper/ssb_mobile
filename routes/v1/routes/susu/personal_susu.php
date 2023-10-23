@@ -23,15 +23,7 @@ Route::group([
             name: 'store'
         );
 
-        // PersonalSusuShowController route
-        Route::get(
-            uri: '',
-            action: PersonalSusuCollectionController::class
-        )->name(
-            name: 'index'
-        );
-
-        // CreatePersonalSusu route
+        // PersonalSusuApprovalController route
         Route::post(
             uri: '{susu}/approval',
             action: PersonalSusuApprovalController::class
@@ -40,6 +32,14 @@ Route::group([
         )->whereUuid(['susu']);
 
         // PersonalSusuCollectionController route
+        Route::get(
+            uri: '',
+            action: PersonalSusuCollectionController::class
+        )->name(
+            name: 'index'
+        );
+
+        // PersonalSusuShowController route
         Route::get(
             uri: '{susu}',
             action: PersonalSusuShowController::class

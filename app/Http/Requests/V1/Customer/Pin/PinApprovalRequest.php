@@ -16,27 +16,19 @@ final class PinApprovalRequest extends ApiRequest
     public function rules(): array
     {
         return [
-            'data' => [
-                'required',
-            ],
-            'data.type' => [
-                'required',
-                'string', 'in:Pin',
-            ],
-            'data.attributes.pin' => [
-                'required',
-                'integer', 'digits_between:4,4',
-            ],
+            'data' => ['required'],
+            'data.type' => ['required', 'string', 'in:Pin'],
+            'data.attributes.pin' => ['required', 'integer', 'digits_between:4,4'],
         ];
     }
 
     public function messages(): array
     {
         return [
-            'data.required' => 'The data field is invalid',
+            'data.required' => 'The data field is invalid.',
 
-            'data.type.required' => 'The type is required',
-            'data.type.string' => 'The type must be of a string',
+            'data.type.required' => 'The type is required.',
+            'data.type.string' => 'The type must be of a string.',
 
             'data.attributes.pin.required' => 'The pin is required.',
             'data.attributes.pin.integer' => 'The pin must be an integer.',
