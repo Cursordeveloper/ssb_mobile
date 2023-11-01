@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\V1\Susu\Personal\CreatePersonalSusuController;
 use App\Http\Controllers\V1\Susu\Personal\PersonalSusuApprovalController;
+use App\Http\Controllers\V1\Susu\Personal\PersonalSusuBalanceController;
 use App\Http\Controllers\V1\Susu\Personal\PersonalSusuCollectionController;
-use App\Http\Controllers\V1\Susu\Personal\PersonalSusuShowController;
+use App\Http\Controllers\V1\Susu\Personal\PersonalSusuController;
+use App\Http\Controllers\V1\Susu\Personal\PersonalSusuCreateController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -18,7 +19,7 @@ Route::group([
         // CreatePersonalSusu route
         Route::post(
             uri: '',
-            action: CreatePersonalSusuController::class
+            action: PersonalSusuCreateController::class
         )->name(
             name: 'store'
         );
@@ -39,12 +40,20 @@ Route::group([
             name: 'index'
         );
 
-        // PersonalSusuShowController route
+        // PersonalSusuController route
         Route::get(
             uri: '{susu}',
-            action: PersonalSusuShowController::class
+            action: PersonalSusuController::class
         )->name(
             name: 'show'
+        );
+
+        // PersonalSusuBalanceController route
+        Route::get(
+            uri: '{susu}/balance',
+            action: PersonalSusuBalanceController::class
+        )->name(
+            name: 'balance.show'
         );
     });
 });

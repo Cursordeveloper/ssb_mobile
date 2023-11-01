@@ -6,7 +6,7 @@ namespace Domain\Susu\Personal\Actions;
 
 use Illuminate\Support\Facades\Http;
 
-final class CreatePersonalSusuAction
+final class PersonalSusuCreateAction
 {
     public static function execute(
         array $request,
