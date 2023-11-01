@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Rules\V1\Customer\Pin;
 
 use Closure;
-use Domain\Customer\Models\Customer;
+use Domain\Mobile\Models\Customer;
 use Illuminate\Contracts\Validation\ValidationRule;
 
 final class CreatePinRule implements ValidationRule

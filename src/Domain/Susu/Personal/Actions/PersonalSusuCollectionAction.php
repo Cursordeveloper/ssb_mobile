@@ -8,14 +8,15 @@ use Illuminate\Support\Facades\Http;
 
 final class PersonalSusuCollectionAction
 {
-    public static function execute(): array
-    {
+    public static function execute(
+        $auth_user,
+    ): array {
         // Send the request and return the response
         return Http::withHeaders([
             'Content-Type' => 'application/vnd.api+json',
             'Accept' => 'application/vnd.api+json',
         ])->get(
-            url: env(key: 'SSB_SUSU').'customers/'.auth()->user()['resource_id'].'/personal',
+            url: env(key: 'SSB_SUSU').'customers/'.$auth_user->resource_id.'/personal',
         )->json();
     }
 }

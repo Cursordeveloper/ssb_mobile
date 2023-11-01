@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use Domain\Customer\Models\Customer;
-use Domain\Customer\Observers\CustomerObserver;
+use Domain\Mobile\Models\Customer;
+use Domain\Mobile\Observers\CustomerObserver;
 use Illuminate\Support\ServiceProvider;
 
 final class AppServiceProvider extends ServiceProvider

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Requests\V1\Customer\Pin;
 
 use App\Http\Requests\Shared\ApiRequest;
-use App\Rules\V1\Common\UnauthenticatedCustomerStatusRule;
 use App\Rules\V1\Customer\Pin\CreatePinRule;
+use App\Rules\V1\Mobile\Authentication\UnauthenticatedCustomerStatusRule;
 
 final class CreatePinRequest extends ApiRequest
 {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Customer\Actions\LinkedAccounts;
 
-use Domain\Customer\DTO\LinkedAccountDTO\LinkedAccountDTO;
+use Domain\Customer\DTO\LinkedAccount\LinkedAccountDTO;
 use Illuminate\Support\Facades\Http;
 
 final class LinkAccountAction

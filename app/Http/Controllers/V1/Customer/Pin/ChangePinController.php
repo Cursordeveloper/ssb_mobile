@@ -13,10 +13,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class ChangePinController extends Controller
 {
-    public function __invoke(ChangePinRequest $request): JsonResponse
-    {
+    public function __invoke(
+        ChangePinRequest $request,
+    ): JsonResponse {
         // Dispatch the ChangePinJob
-        ChangePinJob::dispatch(request: $request->validated());
+        ChangePinJob::dispatch(
+            request: $request->validated(),
+        );
 
         // Return the resourceResponseBuilder with the CustomerResource as data
         return ResponseBuilder::resourcesResponseBuilder(

@@ -31,4 +31,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'ssb_customer' => [
+        'base_url' => env('SSB_CUSTOMER'),
+    ],
+
+    'ssb_susu' => [
+        'base_url' => env('SSB_SUSU'),
+    ],
 ];

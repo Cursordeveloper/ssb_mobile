@@ -24,6 +24,7 @@ use SlevomatCodingStandard\Sniffs\TypeHints\NullableTypeForNullDefaultValueSniff
 use SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\PropertyTypeHintSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff;
+use PHP_CodeSniffer\Standards\Generic\Sniffs\ControlStructures\InlineControlStructureSniff;
 
 return [
 
@@ -74,7 +75,7 @@ return [
     */
 
     'exclude' => [
-        'src/Domain/Customer/DTO/Registration/CustomerDTO.php',
+        'src/Domain/Customer/DTO/Registration/PersonalSusuDTO.php',
         'phpinsights.php',
     ],
 
@@ -93,6 +94,7 @@ return [
         ParameterTypeHintSniff::class,
         PropertyTypeHintSniff::class,
         ReturnTypeHintSniff::class,
+        InlineControlStructureSniff::class,
         UselessFunctionDocCommentSniff::class,
         UnusedParameterSniff::class,
         DocCommentSpacingSniff::class,

@@ -9,8 +9,8 @@ use App\Http\Controllers\V1\Customer\LinkedAccount\LinkedAccountsController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
-    'prefix' => 'customers/linked-accounts',
-    'as' => 'customers.linked-accounts.',
+    'prefix' => 'linked-accounts',
+    'as' => 'linked-accounts.',
 ], function (): void {
     Route::group([
         'middleware' => 'auth:customer',

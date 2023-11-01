@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace Domain\Customer\DTO\Pin;
 
-use Domain\Customer\DTO\Registration\CustomerDTO;
-use Domain\Customer\Models\Customer;
+use Domain\Mobile\DTO\Registration\CustomerDTO;
+use Domain\Mobile\Models\Customer;
 
 final class PinDTO
 {
-    public static function toArray(Customer $customer, array $request): array
-    {
+    public static function toArray(
+        Customer $customer,
+        array $request,
+    ): array {
         return [
             // Resource type and id
             'type' => 'Pin',

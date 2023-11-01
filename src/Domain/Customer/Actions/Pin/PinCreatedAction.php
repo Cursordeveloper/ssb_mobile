@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Customer\Actions\Pin;
 
-use Domain\Customer\Actions\Common\GetCustomerAction;
+use Domain\Mobile\Actions\Common\Customer\GetCustomerAction;
 
 final class PinCreatedAction
 {

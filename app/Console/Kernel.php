@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Console;
 
+use App\Console\Commands\MessageConsumer;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -11,7 +12,7 @@ final class Kernel extends ConsoleKernel
 {
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command(command: 'app:message-consumer')->everySecond();
+        $schedule->command(command: MessageConsumer::class)->everySecond();
     }
 
     protected function commands(): void
