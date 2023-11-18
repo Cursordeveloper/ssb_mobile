@@ -13,13 +13,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class RegistrationTokenController extends Controller
 {
-    public function __invoke(
-        RegistrationTokenRequest $request,
-    ): JsonResponse {
+    public function __invoke(RegistrationTokenRequest $request): JsonResponse
+    {
         // Create the customer
-        $customer = RegistrationTokenAction::execute(
-            request: $request->validated(),
-        );
+        $customer = RegistrationTokenAction::execute(request: $request->validated());
 
         // Return the resourceResponseBuilder with the CustomerResource as data
         return ResponseBuilder::resourcesResponseBuilder(

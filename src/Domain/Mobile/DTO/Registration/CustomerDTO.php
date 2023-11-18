@@ -41,6 +41,10 @@ final class CustomerDTO
                     target: $customer,
                     key: 'email'
                 ),
+                'status' => data_get(
+                    target: $customer,
+                    key: 'status'
+                ),
             ],
         ];
     }

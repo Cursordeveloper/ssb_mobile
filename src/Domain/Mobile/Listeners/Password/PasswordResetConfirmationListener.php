@@ -10,13 +10,8 @@ final class PasswordResetConfirmationListener implements ShouldQueue
     public function handle(
         object $event,
     ): void {
-        $headers = [
-            'origin' => 'mobile',
-            'action' => 'SendPasswordResetConfirmationAction',
-        ];
-        $data = [
-            'data' => $event->data,
-        ];
+        $headers = ['origin' => 'mobile', 'action' => 'SendPasswordResetConfirmationAction'];
+        $data = ['data' => $event->data];
 
         $rabbitMQService = new RabbitMQService();
         $rabbitMQService->publish(

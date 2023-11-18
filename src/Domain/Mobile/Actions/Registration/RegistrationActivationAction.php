@@ -15,23 +15,15 @@ final class RegistrationActivationAction
         array $request,
     ): Customer {
         // Get the customer
-        $customer = GetCustomerAction::execute(
-            resource: data_get(
-                target: $request,
-                key: 'data.attributes.email',
-            ),
-        );
+        $customer = GetCustomerAction::execute(resource: data_get(target: $request, key: 'data.attributes.email',));
 
         // Update the customer status to active
-        $customer->update([
-            'status' => CustomerStatus::Active->value,
-        ]);
+        $customer->update(['status' => CustomerStatus::Active->value]);
 
         // Dispatch CustomerActivatedEvent
-        CustomerActivatedEvent::dispatch(
-            $customer->refresh(),
-        );
+        CustomerActivatedEvent::dispatch($customer->refresh());
 
+        // Return the refreshed customer model
         return $customer->refresh();
     }
 }

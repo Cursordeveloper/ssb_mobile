@@ -12,12 +12,7 @@ final class RegistrationAction
         array $request
     ): Customer {
         // Create the customer
-        $customer = new Customer(
-            data_get(
-                target: $request,
-                key: 'data.attributes'
-            )
-        );
+        $customer = new Customer(data_get(target: $request, key: 'data.attributes'));
         $customer->save();
 
         return $customer->refresh();

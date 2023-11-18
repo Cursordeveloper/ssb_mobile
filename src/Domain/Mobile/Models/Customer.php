@@ -14,23 +14,13 @@ final class Customer extends Authenticatable implements JWTSubject
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected string $guard = 'customer';
+    protected $guarded = ['id'];
+    protected $fillable = ['id', 'resource_id', 'first_name', 'last_name', 'phone_number', 'email', 'password', 'has_pin', 'status'];
 
     protected $dispatchesEvents = [
         'created' => CustomerCreatedEvent::class,
-    ];
-
-    protected $guarded = ['id'];
-
-    protected $fillable = [
-        'resource_id',
-        'first_name',
-        'last_name',
-        'phone_number',
-        'email',
-        'password',
-        'has_pin',
-        'status',
     ];
 
     public function getRouteKeyName(): string

@@ -17,9 +17,7 @@ final class RegistrationActivationController extends Controller
         RegistrationActivationRequest $request,
     ): JsonResponse {
         // Activate the customer account account
-        $customer = RegistrationActivationAction::execute(
-            request: $request->validated(),
-        );
+        $customer = RegistrationActivationAction::execute(request: $request->validated());
 
         // Return the resourceResponseBuilder
         return ResponseBuilder::resourcesResponseBuilder(

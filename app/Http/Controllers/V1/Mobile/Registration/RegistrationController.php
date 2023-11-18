@@ -14,13 +14,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class RegistrationController extends Controller
 {
-    public function __invoke(
-        RegistrationRequest $request,
-    ): JsonResponse {
+    public function __invoke(RegistrationRequest $request): JsonResponse
+    {
         // Create the customer
-        $customer_created = RegistrationAction::execute(
-            request: $request->validated(),
-        );
+        $customer_created = RegistrationAction::execute(request: $request->validated());
 
         // Dispatch customerCreatedEvent
         return ResponseBuilder::resourcesResponseBuilder(
@@ -28,9 +25,7 @@ final class RegistrationController extends Controller
             code: Response::HTTP_OK,
             message: 'Request successful.',
             description: 'Registration in progress. You will be notified shortly.',
-            data: CustomerDTO::toArray(
-                customer: $customer_created,
-            )
+            data: CustomerDTO::toArray(customer: $customer_created)
         );
     }
 }

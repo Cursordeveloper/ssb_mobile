@@ -10,13 +10,8 @@ final class ChangePasswordConfirmationListener implements ShouldQueue
     public function handle(
         object $event,
     ): void {
-        $headers = [
-            'origin' => 'mobile',
-            'action' => 'SendPasswordChangeConfirmationAction',
-        ];
-        $data = [
-            'data' => $event->data,
-        ];
+        $headers = ['origin' => 'mobile', 'action' => 'SendPasswordChangeConfirmationAction'];
+        $data = ['data' => $event->data];
 
         $rabbitMQService = new RabbitMQService();
         $rabbitMQService->publish(

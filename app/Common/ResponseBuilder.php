@@ -97,8 +97,8 @@ final class ResponseBuilder
             'meta' => [
                 'version' => '1.0',
             ],
-            'data' => $user,
             'token' => $token,
+            'data' => $user,
         ]);
     }
 }

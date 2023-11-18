@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Domain\Customer\Events\Pin;
+namespace Domain\Mobile\Events\Registration;
 
-use Domain\Customer\DTO\Pin\PinDTO;
+use Domain\Mobile\Models\Customer;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-final class CreatePinEvent
+final class CustomerTokenEvent
 {
     use Dispatchable;
     use InteractsWithSockets;
     use SerializesModels;
 
     public function __construct(
-        public PinDTO $data
+        public Customer $customer
     ) {
     }
 }
