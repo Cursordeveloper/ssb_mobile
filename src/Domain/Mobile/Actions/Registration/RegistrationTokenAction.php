@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Mobile\Actions\Registration;
 
 use Domain\Mobile\Actions\Common\Customer\GetCustomerAction;
-use Domain\Mobile\Actions\Common\Token\GenerateTokenAction;
 use Domain\Mobile\Events\Registration\CustomerTokenEvent;
 use Domain\Mobile\Models\Customer;
 

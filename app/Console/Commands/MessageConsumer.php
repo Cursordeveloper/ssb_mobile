@@ -30,8 +30,7 @@ final class MessageConsumer extends Command
                 if ($register) {
                     $message->ack();
                 }
-            }
-            elseif (data_get(target: $headers, key: 'action') === 'PinCreatedAction') {
+            } elseif (data_get(target: $headers, key: 'action') === 'PinCreatedAction') {
                 $register = PinCreatedAction::execute(
                     json_decode(
                         json: $message->getBody(),

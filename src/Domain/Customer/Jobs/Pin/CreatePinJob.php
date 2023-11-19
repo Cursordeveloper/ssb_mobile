@@ -20,9 +20,8 @@ final class CreatePinJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    public function __construct(
-        private readonly array $request
-    ) {
+    public function __construct(private readonly array $request)
+    {
     }
 
     public function handle(): void
@@ -39,8 +38,8 @@ final class CreatePinJob implements ShouldQueue
         CreatePinEvent::dispatch(
             PinDTO::toArray(
                 customer: $customer,
-                request: $this->request
-            )
+                request: $this->request,
+            ),
         );
     }
 }
