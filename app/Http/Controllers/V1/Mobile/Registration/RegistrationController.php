@@ -7,8 +7,8 @@ namespace App\Http\Controllers\V1\Mobile\Registration;
 use App\Common\ResponseBuilder;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Mobile\Registration\RegistrationRequest;
+use App\Http\Resources\V1\Mobile\Registration\RegistrationResource;
 use Domain\Mobile\Actions\Registration\RegistrationAction;
-use Domain\Mobile\DTO\Registration\CustomerDTO;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -25,7 +25,7 @@ final class RegistrationController extends Controller
             code: Response::HTTP_OK,
             message: 'Request successful.',
             description: 'Registration in progress. You will be notified shortly.',
-            data: CustomerDTO::toArray(customer: $customer_created)
+            data: new RegistrationResource($customer_created),
         );
     }
 }

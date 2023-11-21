@@ -40,7 +40,7 @@ final class CreatePinAction
             status: false,
             code: Response::HTTP_ACCEPTED,
             message: 'Request unsuccessful.',
-            description: 'Congratulations! Your registration is successful.',
+            description: 'There was problem creating your pin. Try again later.',
         );
     }
 }

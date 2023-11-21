@@ -19,24 +19,23 @@ final class MessageConsumer extends Command
         $rabbitMQService->consume(exchange: 'ssb_direct', type: 'direct', queue: 'mobile', routingKey: 'ssb_mob', callback: function ($message) {
             $headers = $message->get('application_headers')->getNativeData();
 
-            // Check the actions and call the right class
-            if (data_get(target: $headers, key: 'action') === 'CreateCustomerAction') {
-                $register = CreateCustomerAction::execute(
+            $actionMappings = [
+                'CreateCustomerAction' => new CreateCustomerAction(),
+                'PinCreatedAction' => new PinCreatedAction(),
+            ];
+
+            $actionKey = data_get(target: $headers, key: 'action');
+
+            // Check if the action is mapped
+            if (array_key_exists($actionKey, $actionMappings)) {
+                $actionClass = $actionMappings[$actionKey];
+                $register = $actionClass::execute(
                     json_decode(
                         json: $message->getBody(),
                         associative: true
                     )
                 );
-                if ($register) {
-                    $message->ack();
-                }
-            } elseif (data_get(target: $headers, key: 'action') === 'PinCreatedAction') {
-                $register = PinCreatedAction::execute(
-                    json_decode(
-                        json: $message->getBody(),
-                        associative: true
-                    )
-                );
+
                 if ($register) {
                     $message->ack();
                 }

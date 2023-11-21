@@ -13,7 +13,6 @@ final class Kernel extends ConsoleKernel
 {
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command(command: MessageConsumer::class)->everySecond();
     }
 
     protected function shortSchedule(ShortSchedule $shortSchedule): void
