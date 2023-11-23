@@ -5,6 +5,7 @@ namespace Domain\Mobile\Listeners\Registration;
 use App\Services\RabbitMQService;
 use Domain\Mobile\DTO\Registration\CustomerDTO;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Http;
 
 final class CustomerCreatedListener implements ShouldQueue
 {
