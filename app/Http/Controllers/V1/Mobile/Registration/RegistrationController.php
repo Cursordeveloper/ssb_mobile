@@ -16,16 +16,16 @@ final class RegistrationController extends Controller
 {
     public function __invoke(RegistrationRequest $request): JsonResponse
     {
-        // Create the customer
-        $customer_created = RegistrationAction::execute(request: $request->validated());
+        // Execute the RegistrationAction
+        $customer = RegistrationAction::execute(request: $request->validated());
 
-        // Dispatch customerCreatedEvent
+        // Return the resourceResponseBuilder
         return ResponseBuilder::resourcesResponseBuilder(
             status: true,
             code: Response::HTTP_OK,
             message: 'Request successful.',
             description: 'Registration in progress. You will be notified shortly.',
-            data: new RegistrationResource($customer_created),
+            data: new RegistrationResource($customer),
         );
     }
 }

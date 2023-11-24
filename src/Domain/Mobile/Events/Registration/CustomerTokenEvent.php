@@ -15,8 +15,7 @@ final class CustomerTokenEvent
     use InteractsWithSockets;
     use SerializesModels;
 
-    public function __construct(
-        public Customer $customer
-    ) {
+    public function __construct(public Customer $customer)
+    {
     }
 }

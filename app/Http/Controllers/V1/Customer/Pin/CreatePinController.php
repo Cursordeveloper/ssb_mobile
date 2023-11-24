@@ -13,18 +13,7 @@ final class CreatePinController extends Controller
 {
     public function __invoke(CreatePinRequest $request): JsonResponse
     {
-        // Execute the
+        // Execute the CreatePinAction
         return CreatePinAction::execute(request: $request->validated());
-
-        // Dispatch the CreatePinJob
-//        CreatePinJob::dispatch(request: $request->validated());
-
-        // Return the resourceResponseBuilder with the CustomerResource as data
-//        return ResponseBuilder::resourcesResponseBuilder(
-//            status: true,
-//            code: Response::HTTP_ACCEPTED,
-//            message: 'Request accepted.',
-//            description: 'Pin setup in progress. Notification will be sent shortly.',
-//        );
     }
 }

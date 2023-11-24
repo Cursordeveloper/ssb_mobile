@@ -10,9 +10,8 @@ use Domain\Mobile\Models\Customer;
 
 final class RegistrationTokenAction
 {
-    public static function execute(
-        array $request
-    ): Customer {
+    public static function execute(array $request): Customer
+    {
         // Get the customer
         $customer = GetCustomerAction::execute(resource: data_get(target: $request, key: 'data.attributes.email'));
 

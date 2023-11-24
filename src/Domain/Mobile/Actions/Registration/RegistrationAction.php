@@ -11,9 +11,8 @@ use Illuminate\Support\Str;
 
 final class RegistrationAction
 {
-    public static function execute(
-        array $request
-    ): Customer {
+    public static function execute(array $request): Customer
+    {
         // Create the customer
         $customer = new Customer();
 

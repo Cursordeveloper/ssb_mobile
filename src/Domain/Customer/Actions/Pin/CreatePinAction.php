@@ -15,12 +15,7 @@ final class CreatePinAction
     public static function execute(array $request): JsonResponse
     {
         // Get the customer with the resource_id
-        $customer = GetCustomerAction::execute(
-            resource: data_get(
-                target: $request,
-                key: 'data.attributes.email',
-            )
-        );
+        $customer = GetCustomerAction::execute(resource: data_get(target: $request, key: 'data.attributes.email'));
 
         // Execute the CreatePinRequest to the ssb_customer service
         $pin_created = CreatePinRequest::execute(customer: $customer, request: $request);
@@ -31,7 +26,7 @@ final class CreatePinAction
                 status: true,
                 code: Response::HTTP_ACCEPTED,
                 message: 'Request successful.',
-                description: 'Congratulations! Your registration is successful.',
+                description: 'Congratulations! You have successfully subscribed to Susubox.',
             );
         }
 

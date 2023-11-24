@@ -13,11 +13,11 @@ final class RegistrationResource extends JsonResource
     {
         return [
             // Resource type and id
-            'type' => '',
-            'resource_id' => $this->resource->resource_id,
+            'type' => 'Customer',
 
             // Resource exposed attributes
             'attributes' => [
+                'resource_id' => $this->resource->resource_id,
                 'first_name' => $this->resource->first_name,
                 'last_name' => $this->resource->last_name,
                 'email' => $this->resource->email,
