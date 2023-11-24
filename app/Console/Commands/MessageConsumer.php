@@ -17,13 +17,17 @@ final class MessageConsumer extends Command
     {
         $rabbitMQService = new RabbitMQService();
         $rabbitMQService->consume(exchange: 'ssb_direct', type: 'direct', queue: 'mobile', routingKey: 'ssb_mob', callback: function ($message) {
+
+            // Get the message headers
             $headers = $message->get('application_headers')->getNativeData();
 
+            // Define the action classes array
             $actionMappings = [
                 'CreateCustomerAction' => new CreateCustomerAction(),
                 'PinCreatedAction' => new PinCreatedAction(),
             ];
 
+            // Get the action
             $actionKey = data_get(target: $headers, key: 'action');
 
             // Check if the action is mapped
