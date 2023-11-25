@@ -63,7 +63,6 @@ final class Handler extends ExceptionHandler
 
     public function register(): void
     {
-        $this->reportable(function (): void {
-        });
+        $this->reportable(function (MethodNotAllowedHttpException $e): void {});
     }
 }
