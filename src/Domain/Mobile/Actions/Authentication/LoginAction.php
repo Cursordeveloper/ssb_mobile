@@ -32,7 +32,7 @@ final class LoginAction
             status: true,
             code: Response::HTTP_OK,
             message: 'Login successful.',
-            token: Helpers::RespondWithToken($token),
+            token: Helpers::RespondWithToken($token)->original,
             user: new AuthenticationResource(auth()->guard(name: 'customer')->user()),
         );
     }
