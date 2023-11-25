@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Mobile\Actions\Common\Token;
 
+use App\Common\Helpers;
 use Carbon\Carbon;
 use Domain\Mobile\Models\Customer;
 use Domain\Mobile\Models\Token;
@@ -19,10 +20,7 @@ final class GenerateTokenAction
                 key: 'id',
             ),
         ], [
-            'token' => generateToken(
-                table: 'tokens',
-                length: 6,
-            ),
+            'token' => Helpers::GenerateToken(table: 'tokens', length: 6),
             'token_expiration_date' => Carbon::now()->addDays(),
             'is_verified' => false,
         ])->refresh();
