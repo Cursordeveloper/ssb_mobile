@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Rules\V1\Customer\Registration;
+namespace App\Rules\V1\Mobile\Registration;
 
 use Carbon\Carbon;
 use Closure;
-use Domain\Customer\Models\Customer;
+use Domain\Mobile\Models\Customer;
 use Illuminate\Contracts\Validation\ValidationRule;
 
 final class RegistrationTokenRules implements ValidationRule
