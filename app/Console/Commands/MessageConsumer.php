@@ -7,15 +7,19 @@ namespace App\Console\Commands;
 use App\Services\RabbitMQService;
 use Domain\Customer\Actions\Pin\PinCreatedAction;
 use Domain\Mobile\Actions\Registration\CreateCustomerAction;
+use Exception;
 use Illuminate\Console\Command;
 
 final class MessageConsumer extends Command
 {
     protected $signature = 'app:message-consumer';
 
+    /**
+     * @throws Exception
+     */
     public function handle(): void
     {
-        $rabbitMQService = new RabbitMQService();
+        $rabbitMQService = RabbitMQService::create();
         $rabbitMQService->consume(exchange: 'ssb_direct', type: 'direct', queue: 'mobile', routingKey: 'ssb_mob', callback: function ($message) {
 
             // Get the message headers

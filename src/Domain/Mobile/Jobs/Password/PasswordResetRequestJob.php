@@ -35,8 +35,6 @@ final class PasswordResetRequestJob implements ShouldQueue
         );
 
         // Generate password reset token
-        GenerateTokenAction::execute(
-            customer: $customer,
-        );
+        GenerateTokenAction::execute(customer: $customer);
     }
 }
