@@ -16,7 +16,7 @@ final class ChangePasswordConfirmationListener implements ShouldQueue
         $headers = ['origin' => 'mobile', 'action' => 'SendPasswordChangeConfirmationAction'];
         $data = ['data' => $event->data];
 
-        $rabbitMQService = RabbitMQService::create();
+        $rabbitMQService = new RabbitMQService();
         $rabbitMQService->publish(exchange: 'ssb_direct', type: 'direct', queue: 'notification', routingKey: 'ssb_not', data: $data, headers: $headers);
     }
 }

@@ -21,7 +21,7 @@ final class CustomerCreatedListener implements ShouldQueue
         $headers = ['origin' => 'mobile', 'action' => 'CreateCustomerAction'];
 
         // Initialize the RabbitMQService and publish messages
-        $rabbitMQService = RabbitMQService::create();
+        $rabbitMQService = new RabbitMQService();;
         $rabbitMQService->publish(exchange: 'ssb_direct', type: 'direct', queue: 'ussd', routingKey: 'ssb_uss', data: $data, headers: $headers);
         $rabbitMQService->publish(exchange: 'ssb_direct', type: 'direct', queue: 'customer', routingKey: 'ssb_cus', data: $data, headers: $headers);
         $rabbitMQService->publish(exchange: 'ssb_direct', type: 'direct', queue: 'notification', routingKey: 'ssb_not', data: $data, headers: $headers);
