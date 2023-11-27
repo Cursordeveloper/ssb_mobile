@@ -47,21 +47,13 @@ final class RabbitMQService
         $headers = new AMQPTable($headers);
         $message->set('application_headers', $headers);
 
-        $this->channel->basic_publish(
-            msg: $message,
-            exchange: $exchange,
-            routing_key: $routingKey
-        );
+        $this->channel->basic_publish(msg: $message, exchange: $exchange, routing_key: $routingKey);
     }
 
     public function consume(string $exchange, string $type, string $queue, string $routingKey, callable $callback): void
     {
         $this->setupQueueAndExchange($exchange, $type, $queue, $routingKey);
-
-        $this->channel->basic_consume(
-            queue: $queue,
-            callback: $callback
-        );
+        $this->channel->basic_consume(queue: $queue, callback: $callback);
 
         while ($this->channel->is_consuming()) {
             $this->channel->wait();
@@ -70,21 +62,8 @@ final class RabbitMQService
 
     private function setupQueueAndExchange(string $exchange, string $type, string $queue, string $routingKey): void
     {
-        $this->channel->queue_declare(
-            queue: $queue,
-            durable: true,
-            auto_delete: false
-        );
-        $this->channel->exchange_declare(
-            exchange: $exchange,
-            type: $type,
-            durable: true,
-            auto_delete: false
-        );
-        $this->channel->queue_bind(
-            queue: $queue,
-            exchange: $exchange,
-            routing_key: $routingKey
-        );
+        $this->channel->queue_declare(queue: $queue, durable: true, auto_delete: false);
+        $this->channel->exchange_declare(exchange: $exchange, type: $type, durable: true, auto_delete: false);
+        $this->channel->queue_bind(queue: $queue, exchange: $exchange, routing_key: $routingKey);
     }
 }
