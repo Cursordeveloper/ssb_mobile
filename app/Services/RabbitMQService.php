@@ -21,12 +21,12 @@ final class RabbitMQService
     public function __construct()
     {
         $this->connection = new AMQPStreamConnection(
-            host: '20.254.68.254:5672',
-            port: '5672',
-            user: 'user',
-            password: 'yyQmd7z1BNGI0kJqOOVi2g_lrnruTVn2',
-            vhost: 'susubox_dev',
-            insist: 'mobile',
+            env(key: 'RABBITMQ_HOST'),
+            env(key: 'RABBITMQ_PORT'),
+            env(key: 'RABBITMQ_USER'),
+            env(key: 'RABBITMQ_PASSWORD'),
+            env(key: 'RABBITMQ_VHOST'),
+            env(key: 'RABBITMQ_QUEUE_NAME')
         );
         $this->channel = $this->connection->channel();
     }
