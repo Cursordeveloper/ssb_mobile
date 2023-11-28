@@ -18,14 +18,14 @@ final class RabbitMQService
     /**
      * @throws Exception
      */
-    public function __construct()
-    {
+    public function __construct(
+    ) {
         $this->connection = new AMQPStreamConnection(
-            env(key: 'RABBITMQ_HOST'),
-            env(key: 'RABBITMQ_PORT'),
-            env(key: 'RABBITMQ_USERNAME'),
-            env(key: 'RABBITMQ_PASSWORD'),
-            env(key: 'RABBITMQ_VHOST'),
+            config('services.rabbitmq.host'),
+            config('services.rabbitmq.port'),
+            config('services.rabbitmq.username'),
+            config('services.rabbitmq.password'),
+            config('services.rabbitmq.vhost'),
         );
         $this->channel = $this->connection->channel();
     }
