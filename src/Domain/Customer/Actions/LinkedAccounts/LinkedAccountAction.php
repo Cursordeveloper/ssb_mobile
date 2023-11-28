@@ -16,7 +16,7 @@ final class LinkedAccountAction
             'Content-Type' => 'application/vnd.api+json',
             'Accept' => 'application/vnd.api+json',
         ])->get(
-            url: env(key: 'SSB_CUSTOMER').auth()->user()['resource_id'].'/linked-accounts/'.$linked_account,
+            url: config(key: 'services.ssb_customer.base_url').auth()->user()['resource_id'].'/linked-accounts/'.$linked_account,
         )->json();
     }
 }

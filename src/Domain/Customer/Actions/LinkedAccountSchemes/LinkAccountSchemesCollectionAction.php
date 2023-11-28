@@ -16,8 +16,6 @@ final class LinkAccountSchemesCollectionAction
         return Http::withHeaders([
             'Content-Type' => 'application/vnd.api+json',
             'Accept' => 'application/vnd.api+json',
-        ])->get(
-            url: env(key: 'SSB_CUSTOMER').'schemes',
-        )->json();
+        ])->get(url: config(key: 'services.ssb_customer.base_url').'schemes',)->json();
     }
 }
