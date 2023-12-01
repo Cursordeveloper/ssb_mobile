@@ -11,12 +11,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LoginController extends Controller
 {
-    public function __invoke(
-        LoginRequest $request,
-    ): JsonResponse {
+    public function __invoke(LoginRequest $request): JsonResponse
+    {
         // Execute the login action and return the resource
-        return LoginAction::execute(
-            request: $request->validated()
-        );
+        return LoginAction::execute(request: $request->validated());
     }
 }

@@ -11,7 +11,7 @@ use Domain\Mobile\Events\Registration\CustomerCreatedEvent;
 use Domain\Mobile\Events\Registration\CustomerTokenEvent;
 use Domain\Mobile\Listeners\Password\ChangePasswordConfirmationListener;
 use Domain\Mobile\Listeners\Password\PasswordResetConfirmationListener;
-use Domain\Mobile\Listeners\Registration\CustomerCreatedListener;
+use Domain\Mobile\Listeners\Registration\CustomerActivatedListener;
 use Domain\Mobile\Listeners\Token\CreateRegistrationTokenListener;
 use Domain\Mobile\Listeners\Token\DeleteTokenListener;
 use Illuminate\Auth\Events\Registered;
@@ -31,7 +31,7 @@ final class EventServiceProvider extends ServiceProvider
             CreateRegistrationTokenListener::class,
         ],
         CustomerActivatedEvent::class => [
-            CustomerCreatedListener::class,
+            CustomerActivatedListener::class,
             DeleteTokenListener::class,
         ],
         ChangePasswordConfirmationEvent::class => [

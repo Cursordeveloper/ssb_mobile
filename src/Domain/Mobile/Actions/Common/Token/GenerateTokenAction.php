@@ -15,10 +15,7 @@ final class GenerateTokenAction
     {
         // Generate and store the token
         return Token::updateOrCreate([
-            'customer_id' => data_get(
-                target: $customer,
-                key: 'id',
-            ),
+            'customer_id' => data_get(target: $customer, key: 'id'),
         ], [
             'token' => Helpers::GenerateToken(table: 'tokens', length: 6),
             'token_expiration_date' => Carbon::now()->addDays(),

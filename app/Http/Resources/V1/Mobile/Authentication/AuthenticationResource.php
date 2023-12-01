@@ -13,7 +13,7 @@ final class AuthenticationResource extends JsonResource
     {
         return [
             // Resource type and id
-            'type' => '',
+            'type' => 'Customer',
             'resource_id' => $this->resource->resource_id,
 
             // Resource exposed attributes

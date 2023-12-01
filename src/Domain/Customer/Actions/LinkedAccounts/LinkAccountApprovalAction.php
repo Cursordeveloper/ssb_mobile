@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Http;
 final class LinkAccountApprovalAction
 {
     public static function execute(
-        string $linked_account,
         array $request,
     ): array {
         // Send (request) and return the response
@@ -17,7 +16,7 @@ final class LinkAccountApprovalAction
             'Content-Type' => 'application/vnd.api+json',
             'Accept' => 'application/vnd.api+json',
         ])->post(
-            url: config(key: 'services.ssb_customer.base_url').auth()->user()['resource_id'].'/linked-accounts/'.$linked_account.'/approval',
+            url: config(key: 'services.ssb_customer.base_url').auth()->user()['resource_id'].'/linked-accounts/approval',
             data: $request,
         )->json();
     }

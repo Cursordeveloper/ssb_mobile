@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Http;
 
 final class LinkAccountSchemesCollectionAction
 {
-    public static function execute(): array
+    public static function execute($auth_user): array
     {
-        // Get Schemes from Cache or
+        // TODO: Get Schemes from Cache or
 
         // Get Schemes from ssb_customer_service
         return Http::withHeaders([
             'Content-Type' => 'application/vnd.api+json',
             'Accept' => 'application/vnd.api+json',
-        ])->get(url: config(key: 'services.ssb_customer.base_url').'schemes',)->json();
+        ])->get(url: config(key: 'services.ssb_customer.base_url').$auth_user->resource_id.'/schemes')->json();
     }
 }

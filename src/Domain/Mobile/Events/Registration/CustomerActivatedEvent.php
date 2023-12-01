@@ -15,7 +15,7 @@ final class CustomerActivatedEvent
     use InteractsWithSockets;
     use SerializesModels;
 
-    public function __construct(public Customer $customer)
+    public function __construct(public Customer $data)
     {
     }
 }

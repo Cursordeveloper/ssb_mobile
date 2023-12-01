@@ -11,13 +11,9 @@ use Domain\Customer\Actions\LinkedAccounts\LinkAccountApprovalAction;
 final class LinkAccountApprovalController extends Controller
 {
     public function __invoke(
-        string $linked_account,
         PinApprovalRequest $request,
     ): array {
-        // Execute the LinkAccountApprovalAction
-        return LinkAccountApprovalAction::execute(
-            linked_account: $linked_account,
-            request: $request->validated(),
-        );
+        // Execute and return the LinkAccountApprovalAction
+        return LinkAccountApprovalAction::execute(request: $request->validated());
     }
 }

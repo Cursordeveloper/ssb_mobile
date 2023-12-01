@@ -6,8 +6,8 @@ use App\Http\Controllers\V1\Customer\LinkedAccountScheme\LinkedAccountSchemeColl
 use Illuminate\Support\Facades\Route;
 
 Route::group([
-    'prefix' => 'customers/linked-account-schemes',
-    'as' => 'customers.linked-account-schemes.',
+    'prefix' => 'linked-account-schemes',
+    'as' => 'linked-account-schemes.',
 ], function (): void {
     Route::group([
         'middleware' => 'auth:customer',

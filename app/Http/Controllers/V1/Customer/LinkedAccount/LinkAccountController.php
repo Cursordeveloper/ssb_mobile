@@ -10,11 +10,9 @@ use Domain\Customer\Actions\LinkedAccounts\LinkAccountAction;
 
 final class LinkAccountController extends Controller
 {
-    public function __invoke(
-        LinkAccountRequest $request,
-    ): array {
-        return LinkAccountAction::execute(
-            request: $request->validated(),
-        );
+    public function __invoke(LinkAccountRequest $request): array
+    {
+        // Execute and return the LinkAccountAction
+        return LinkAccountAction::execute(request: $request->validated());
     }
 }

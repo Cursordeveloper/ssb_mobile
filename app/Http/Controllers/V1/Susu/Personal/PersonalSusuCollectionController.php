@@ -12,8 +12,6 @@ final class PersonalSusuCollectionController extends Controller
     public function __invoke(): array
     {
         // Execute the PersonalSusuCollectionAction
-        return PersonalSusuCollectionAction::execute(
-            auth_user: auth()->user()
-        );
+        return PersonalSusuCollectionAction::execute(auth_user: auth()->user());
     }
 }

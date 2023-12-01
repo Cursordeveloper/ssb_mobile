@@ -13,19 +13,10 @@ final class UpdatePasswordAction
         Customer $customer,
         array $request,
     ): bool {
-        $customer = Customer::query()->where(
-            column: 'id',
-            operator: '=',
-            value: data_get(
-                target: $customer,
-                key: 'id'
-            )
-        )->first();
+        $customer = Customer::query()->where(column: 'id', operator: '=', value: data_get(target: $customer, key: 'id'))->first();
+
         $customer->password = Hash::make(
-            value: data_get(
-                target: $request,
-                key: 'data.attributes.password'
-            )
+            value: data_get(target: $request, key: 'data.attributes.password')
         );
         return $customer->save();
     }

@@ -7,7 +7,6 @@ namespace Domain\Mobile\Actions\Registration;
 use Domain\Mobile\Events\Registration\CustomerCreatedEvent;
 use Domain\Mobile\Models\Customer;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 final class RegistrationAction
 {
@@ -17,7 +16,6 @@ final class RegistrationAction
         $customer = new Customer();
 
         // Define the data
-        $customer->resource_id = Str::uuid();
         $customer->first_name = data_get(
             target: $request,
             key: 'data.attributes.first_name',
@@ -42,8 +40,8 @@ final class RegistrationAction
         // Save the data into the database
         $customer->save();
 
-        // Dispatch
-        CustomerCreatedEvent::dispatch($customer);
+        // Dispatch the CustomerCreatedEvent
+        CustomerCreatedEvent::dispatch($customer->refresh());
 
         return $customer->refresh();
     }

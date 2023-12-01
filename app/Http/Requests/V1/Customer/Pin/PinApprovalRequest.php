@@ -17,7 +17,7 @@ final class PinApprovalRequest extends ApiRequest
     {
         return [
             'data' => ['required'],
-            'data.type' => ['required', 'string', 'in:Pin'],
+            'data.type' => ['required', 'string', 'in:LinkedAccount'],
             'data.attributes.pin' => ['required', 'integer', 'digits_between:4,4'],
         ];
     }
