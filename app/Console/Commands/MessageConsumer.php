@@ -20,7 +20,7 @@ final class MessageConsumer extends Command
     public function handle(): void
     {
         $rabbitMQService = new RabbitMQService();;
-        $rabbitMQService->consume(exchange: 'ssb_direct', type: 'direct', queue: 'mobile', routingKey: 'ssb_mob', callback: function ($message) {
+        $rabbitMQService->consume(queue: 'mobile', callback: function ($message) {
 
             // Get the message headers
             $headers = $message->get('application_headers')->getNativeData();

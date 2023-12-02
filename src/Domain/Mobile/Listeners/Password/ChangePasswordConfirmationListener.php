@@ -17,6 +17,6 @@ final class ChangePasswordConfirmationListener implements ShouldQueue
         $data = ['data' => $event->data];
 
         $rabbitMQService = new RabbitMQService();
-        $rabbitMQService->publish(exchange: 'ssb_direct', type: 'direct', queue: 'notification', routingKey: 'ssb_not', data: $data, headers: $headers);
+        $rabbitMQService->publish(exchange: 'ssb_direct', routingKey: 'ssb_not', data: $data, headers: $headers);
     }
 }
