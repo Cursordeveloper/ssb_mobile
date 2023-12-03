@@ -13,7 +13,7 @@ Route::group(['prefix' => 'pin', 'as' => 'pin.'], function (): void {
             uri: '',
             action: CreatePinController::class,
         )->name(
-            name: '',
+            name: 'store',
         );
     });
 

@@ -6,7 +6,7 @@ namespace Domain\Mobile\Actions\Registration;
 
 use Domain\Mobile\Models\Customer;
 
-final class CreateCustomerAction
+final class CustomerCreatedAction
 {
     public static function execute(array $data): bool
     {

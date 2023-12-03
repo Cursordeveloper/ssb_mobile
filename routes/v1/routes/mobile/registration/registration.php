@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\V1\Mobile\Registration\CreateCustomerController;
 use App\Http\Controllers\V1\Mobile\Registration\RegistrationActivationController;
 use App\Http\Controllers\V1\Mobile\Registration\RegistrationController;
 use App\Http\Controllers\V1\Mobile\Registration\RegistrationTokenController;
@@ -28,12 +27,6 @@ Route::group(['prefix' => 'registration', 'as' => 'registration.'], function ():
             action: RegistrationActivationController::class
         )->name(
             name: 'activation',
-        );
-        Route::post(
-            uri: 'customer',
-            action: CreateCustomerController::class
-        )->name(
-            name: 'customer.create',
         );
     });
 

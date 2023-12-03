@@ -8,14 +8,9 @@ use Domain\Mobile\Models\Customer;
 
 final class CustomerAction
 {
-    public static function execute(
-        string $resource,
-    ): Customer {
+    public static function execute(string $resource): Customer
+    {
         // Get the customer
-        return Customer::where(
-            column: 'phone_number',
-            operator: '=',
-            value: $resource
-        )->first();
+        return Customer::where(column: 'phone_number', operator: '=', value: $resource)->first();
     }
 }
