@@ -21,7 +21,6 @@ final class MessageConsumer extends Command
     {
         $rabbitMQService = new RabbitMQService;
         $rabbitMQService->consume(queue: 'mobile', callback: function ($message) {
-
             // Get the message headers
             $headers = $message->get('application_headers')->getNativeData();
 

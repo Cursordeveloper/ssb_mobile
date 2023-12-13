@@ -18,7 +18,7 @@ final class LinkAccountAction
         ])->post(
             url: config(key: 'services.ssb_customer.base_url').auth()->user()['resource_id'].'/linked-accounts',
             data: [
-                'data' => LinkedAccountDTO::toArray(request: $request)
+                'data' => LinkedAccountDTO::toArray(request: $request),
             ],
         )->json();
     }
