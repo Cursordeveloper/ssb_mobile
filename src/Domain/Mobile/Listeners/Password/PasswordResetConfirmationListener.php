@@ -16,7 +16,7 @@ final class PasswordResetConfirmationListener implements ShouldQueue
         $headers = ['origin' => 'mobile', 'action' => 'SendPasswordResetConfirmationAction'];
         $data = ['data' => $event->data];
 
-        $rabbitMQService = new RabbitMQService();;
+        $rabbitMQService = new RabbitMQService;
         $rabbitMQService->publish(exchange: 'ssb_direct', routingKey: 'ssb_not', data: $data, headers: $headers);
     }
 }

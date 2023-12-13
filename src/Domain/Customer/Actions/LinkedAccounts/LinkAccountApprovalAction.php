@@ -8,9 +8,8 @@ use Illuminate\Support\Facades\Http;
 
 final class LinkAccountApprovalAction
 {
-    public static function execute(
-        array $request,
-    ): array {
+    public static function execute(array $request): array
+    {
         // Send (request) and return the response
         return Http::withHeaders([
             'Content-Type' => 'application/vnd.api+json',

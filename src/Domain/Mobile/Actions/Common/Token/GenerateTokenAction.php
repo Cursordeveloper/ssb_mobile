@@ -17,7 +17,7 @@ final class GenerateTokenAction
         return Token::updateOrCreate([
             'customer_id' => data_get(target: $customer, key: 'id'),
         ], [
-            'token' => Helpers::GenerateToken(table: 'tokens', length: 6),
+            'token' => Helpers::generateToken(table: 'tokens', length: 6),
             'token_expiration_date' => Carbon::now()->addDays(),
             'is_verified' => false,
         ])->refresh();

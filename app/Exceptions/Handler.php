@@ -50,6 +50,7 @@ final class Handler extends ExceptionHandler
         foreach ($exceptions as $exceptionType => $responseDetails) {
             if ($e instanceof $exceptionType) {
                 [$code, $message, $description] = $responseDetails;
+
                 return ResponseBuilder::resourcesResponseBuilder(
                     status: false,
                     code: $code,
@@ -64,9 +65,10 @@ final class Handler extends ExceptionHandler
 
     public function register(): void
     {
-        $this->reportable(static function (Throwable $e): void {});
+        $this->reportable(static function (Throwable $e): void {
+        });
 
-//        $this->reportable(function (MethodNotAllowedHttpException $e): void {});
-//        $this->reportable(function (): void {});
+        //        $this->reportable(function (MethodNotAllowedHttpException $e): void {});
+        //        $this->reportable(function (): void {});
     }
 }

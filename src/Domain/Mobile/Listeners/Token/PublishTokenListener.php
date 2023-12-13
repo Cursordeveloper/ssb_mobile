@@ -17,7 +17,7 @@ final class PublishTokenListener implements ShouldQueue
         $headers = ['origin' => 'mobile', 'action' => 'SendRegistrationTokenAction'];
         $data = ['data' => TokenDTO::toArray($event->token)];
 
-        $rabbitMQService = new RabbitMQService();;
+        $rabbitMQService = new RabbitMQService;
         $rabbitMQService->publish(exchange: 'ssb_direct', routingKey: 'ssb_not', data: $data, headers: $headers);
     }
 }

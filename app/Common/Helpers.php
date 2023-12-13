@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class Helpers
 {
-    public static function GenerateToken(string $table, int $length): string
+    public static function generateToken(string $table, int $length): string
     {
         $number = '';
         do {
@@ -21,7 +21,7 @@ final class Helpers
         return $number;
     }
 
-    public static function RespondWithToken($token): JsonResponse
+    public static function respondWithToken($token): JsonResponse
     {
         return response()->json([
             'access_token' => $token,

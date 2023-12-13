@@ -19,7 +19,7 @@ final class MessageConsumer extends Command
      */
     public function handle(): void
     {
-        $rabbitMQService = new RabbitMQService();;
+        $rabbitMQService = new RabbitMQService;
         $rabbitMQService->consume(queue: 'mobile', callback: function ($message) {
 
             // Get the message headers
@@ -27,8 +27,8 @@ final class MessageConsumer extends Command
 
             // Define the action classes array
             $actionMappings = [
-                'CustomerCreatedAction' => new CustomerCreatedAction(),
-                'PinCreatedAction' => new CustomerUpdateAction(),
+                'CustomerCreatedAction' => new CustomerCreatedAction,
+                'PinCreatedAction' => new CustomerUpdateAction,
             ];
 
             // Get the action

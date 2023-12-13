@@ -10,8 +10,6 @@ final class LinkAccountSchemesCollectionAction
 {
     public static function execute($auth_user): array
     {
-        // TODO: Get Schemes from Cache or
-
         // Get Schemes from ssb_customer_service
         return Http::withHeaders([
             'Content-Type' => 'application/vnd.api+json',

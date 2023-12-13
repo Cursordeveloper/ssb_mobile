@@ -21,7 +21,7 @@ final class CustomerActivatedListener implements ShouldQueue
         $data = ['data' => CustomerDTO::toArray(customer: $event->data)];
 
         // Initialize the RabbitMQService and publish messages
-        $rabbitMQService = new RabbitMQService();;
+        $rabbitMQService = new RabbitMQService;
         $rabbitMQService->publish(exchange: 'ssb_direct', routingKey: 'ssb_uss', data: $data, headers: $headers);
         $rabbitMQService->publish(exchange: 'ssb_direct', routingKey: 'ssb_cus', data: $data, headers: $headers);
     }
