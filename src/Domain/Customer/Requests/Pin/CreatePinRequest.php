@@ -9,15 +9,13 @@ use Illuminate\Support\Facades\Http;
 
 final class CreatePinRequest
 {
-    public static function execute(
-        Customer $customer,
-        array $request,
-    ): array {
+    public static function execute(Customer $customer, array $request): array
+    {
         return Http::withHeaders([
             'Content-Type' => 'application/vnd.api+json',
             'Accept' => 'application/vnd.api+json',
         ])->post(
-            url: config(key: 'services.ssb_customer.base_url').'pin',
+            url: config(key: 'services.susubox.ssb_customer.base_url').'pin',
             data: [
                 'data' => [
                     'type' => 'Pin',

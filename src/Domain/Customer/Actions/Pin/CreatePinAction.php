@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Customer\Actions\Pin;
 
-use Domain\Customer\Requests\Pin\CreatePinRequest;
+use App\Services\Customer\CustomerService;
 use Domain\Mobile\Actions\Common\Customer\GetCustomerAction;
 
 final class CreatePinAction
@@ -15,6 +15,6 @@ final class CreatePinAction
         $customer = GetCustomerAction::execute(resource: data_get(target: $request, key: 'data.attributes.email'));
 
         // Execute the CreatePinRequest to the ssb_customer service
-        return CreatePinRequest::execute(customer: $customer, request: $request);
+        return (new CustomerService)->createPin(customer: $customer, data: $request);
     }
 }

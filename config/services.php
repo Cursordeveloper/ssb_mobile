@@ -39,11 +39,22 @@ return [
         'vhost' => env('RABBITMQ_VHOST'),
     ],
 
-    'ssb_customer' => [
-        'base_url' => env('SSB_CUSTOMER'),
-    ],
-
-    'ssb_susu' => [
-        'base_url' => env('SSB_SUSU'),
+    'susubox' => [
+        'ssb_ussd' => [
+            'base_url' => env('SSB_USSD_BASE_URL'),
+            'api_key' => env('SSB_USSD_API_KEY'),
+        ],
+        'ssb_customer' => [
+            'base_url' => env('SSB_CUSTOMER_BASE_URL'),
+            'api_key' => env('SSB_CUSTOMER_API_KEY'),
+        ],
+        'ssb_susu' => [
+            'base_url' => env('SSB_SUSU_BASE_URL'),
+            'api_key' => env('SSB_SUSU_API_KEY'),
+        ],
+        'ssb_notification' => [
+            'base_url' => env('SSB_NOTIFICATION_BASE_URL'),
+            'api_key' => env('SSB_NOTIFICATION_API_KEY'),
+        ],
     ],
 ];

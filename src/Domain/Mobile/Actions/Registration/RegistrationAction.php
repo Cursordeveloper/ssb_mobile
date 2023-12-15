@@ -13,7 +13,7 @@ final class RegistrationAction
     public static function execute(array $request): Customer
     {
         // Create the customer
-        $customer = new Customer();
+        $customer = new Customer;
 
         // Define the data
         $customer->first_name = data_get(

@@ -25,7 +25,7 @@ final class RegistrationRequest extends ApiRequest
             'data.attributes.first_name' => ['required', 'string'],
             'data.attributes.last_name' => ['required', 'string'],
             'data.attributes.phone_number' => ['required', 'min:10', 'unique:customers,phone_number', 'regex:/^([0-9\s\-\+\(\)]*)$/'],
-            'data.attributes.email' => ['required', 'email', 'unique:customers,email'],
+            'data.attributes.email' => ['email', 'unique:customers,email'],
             'data.attributes.password' => ['required', 'between:6,20'],
         ];
     }
@@ -49,7 +49,6 @@ final class RegistrationRequest extends ApiRequest
             'data.attributes.phone_number.min' => 'The phone number must not be less than 10 digits',
             'data.attributes.phone_number.unique' => 'The phone number is already taken',
             'data.attributes.phone_number.regex' => 'The phone number is invalid.',
-            'data.attributes.email.required' => 'The email is required',
             'data.attributes.email.email' => 'The email address is invalid',
             'data.attributes.email.unique' => 'The email address is already taken',
             'data.attributes.password.required' => 'The password is required.',

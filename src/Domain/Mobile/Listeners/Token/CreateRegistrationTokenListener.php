@@ -2,6 +2,7 @@
 
 namespace Domain\Mobile\Listeners\Token;
 
+use App\Services\Notification\NotificationService;
 use App\Services\RabbitMQService;
 use Domain\Mobile\Actions\Common\Token\GenerateTokenAction;
 use Domain\Mobile\DTO\Token\TokenDTO;
@@ -18,13 +19,15 @@ final class CreateRegistrationTokenListener implements ShouldQueue
         // Create the token
         $token = GenerateTokenAction::execute(customer: $event->customer);
 
-        // Define the message headers
-        $headers = ['origin' => 'mobile', 'action' => 'SendRegistrationTokenAction'];
-
         // Define the message data
         $data = ['data' => TokenDTO::toArray($token)];
 
-        $rabbitMQService = new RabbitMQService;
-        $rabbitMQService->publish(exchange: 'ssb_direct', routingKey: 'ssb_not', data: $data, headers: $headers);
+        // Publish message through http
+        (new NotificationService)->sendRegistrationToken($data);
+
+        // Define the message headers
+        //        $headers = ['origin' => 'mobile', 'action' => 'SendRegistrationTokenAction'];
+        //        $rabbitMQService = new RabbitMQService;
+        //        $rabbitMQService->publish(exchange: 'ssb_direct', routingKey: 'ssb_not', data: $data, headers: $headers);
     }
 }
