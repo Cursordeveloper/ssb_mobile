@@ -15,7 +15,7 @@ final class LinkAccountApprovalAction
             'Content-Type' => 'application/vnd.api+json',
             'Accept' => 'application/vnd.api+json',
         ])->post(
-            url: config(key: 'services.ssb.susubox.ssb_customer.base_url').auth()->user()['resource_id'].'/linked-accounts/approval',
+            url: config(key: 'services.susubox.ssb.susubox.ssb_customer.base_url').auth()->user()['resource_id'].'/linked-accounts/approval',
             data: $request,
         )->json();
     }
