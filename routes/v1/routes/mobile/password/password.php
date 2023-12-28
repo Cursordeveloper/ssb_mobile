@@ -8,10 +8,7 @@ use App\Http\Controllers\V1\Mobile\Password\PasswordResetRequestController;
 use App\Http\Controllers\V1\Mobile\Password\PasswordResetTokenVerificationController;
 use Illuminate\Support\Facades\Route;
 
-Route::group([
-    'prefix' => 'password',
-    'as' => 'password.',
-], function (): void {
+Route::group(['prefix' => 'password', 'as' => 'password.'], function (): void {
     // Unprotected routes
     Route::group([], function (): void {
         Route::post(
