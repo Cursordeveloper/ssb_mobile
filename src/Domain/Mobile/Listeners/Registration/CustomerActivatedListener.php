@@ -3,7 +3,6 @@
 namespace Domain\Mobile\Listeners\Registration;
 
 use App\Services\Customer\CustomerService;
-use App\Services\RabbitMQService;
 use App\Services\Ussd\UssdService;
 use Domain\Mobile\DTO\Registration\CustomerDTO;
 use Exception;

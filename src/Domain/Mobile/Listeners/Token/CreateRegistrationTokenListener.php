@@ -3,7 +3,6 @@
 namespace Domain\Mobile\Listeners\Token;
 
 use App\Services\Notification\NotificationService;
-use App\Services\RabbitMQService;
 use Domain\Mobile\Actions\Common\Token\GenerateTokenAction;
 use Domain\Mobile\DTO\Token\TokenDTO;
 use Exception;
