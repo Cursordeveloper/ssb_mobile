@@ -2,22 +2,15 @@
 
 namespace Domain\Mobile\Listeners\Password;
 
-use App\Services\RabbitMQService;
-use Domain\Mobile\DTO\Token\TokenDTO;
-use Exception;
+use App\Services\Notification\Data\Password\PasswordResetRequestTokenData;
+use App\Services\Notification\Requests\Password\NotificationServicePasswordResetRequest;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 final class PasswordResetRequestListener implements ShouldQueue
 {
-    /**
-     * @throws Exception
-     */
     public function handle(object $event): void
     {
-        $headers = ['origin' => 'mobile', 'action' => 'SendPasswordResetRequestAction'];
-        $data = ['data' => TokenDTO::toArray($event->data)];
-
-        $rabbitMQService = new RabbitMQService;
-        $rabbitMQService->publish(exchange: 'ssb_direct', routingKey: 'ssb_not', data: $data, headers: $headers);
+        // Publish message through http
+        (new NotificationServicePasswordResetRequest)->execute(customer: $event->customer, data: PasswordResetRequestTokenData::toArray($event->token));
     }
 }

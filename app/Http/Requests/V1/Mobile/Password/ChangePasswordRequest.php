@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Requests\V1\Mobile\Password;
 
 use App\Http\Requests\Shared\ApiRequest;
-use App\Rules\V1\Mobile\Authentication\AuthenticatedCustomerStatusRule;
 use App\Rules\V1\Mobile\Password\ChangePasswordRules;
 
 final class ChangePasswordRequest extends ApiRequest
@@ -21,7 +20,7 @@ final class ChangePasswordRequest extends ApiRequest
             'data' => ['required'],
             'data.type' => ['required', 'string', 'in:Password'],
 
-            'data.attributes.current_password' => ['required', new AuthenticatedCustomerStatusRule(), new ChangePasswordRules()],
+            'data.attributes.current_password' => ['required', new ChangePasswordRules],
             'data.attributes.password' => ['required', 'between:6,20', 'confirmed'],
         ];
     }

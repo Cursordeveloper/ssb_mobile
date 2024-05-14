@@ -13,9 +13,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class LogoutController extends Controller
 {
-    public function __invoke(
-        Request $request,
-    ): JsonResponse {
+    public function __invoke(Request $request): JsonResponse
+    {
         // Execute the logout action
         LogoutAction::execute();
 

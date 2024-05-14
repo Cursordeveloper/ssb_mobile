@@ -4,37 +4,20 @@ declare(strict_types=1);
 
 namespace Domain\Mobile\Actions\Password;
 
-use Domain\Mobile\Actions\Common\Customer\GetCustomerAction;
-use Domain\Mobile\Actions\Common\Token\DeleteTokenAction;
-use Domain\Mobile\Events\Password\PasswordResetConfirmationEvent;
+use Domain\Mobile\Events\Password\PasswordResetEvent;
+use Domain\Mobile\Models\Customer;
 
 final class PasswordResetAction
 {
-    public static function execute(
-        array $request,
-    ): void {
-        // Execute the GetCustomerAction
-        $customer = GetCustomerAction::execute(
-            resource: data_get(
-                target: $request,
-                key: 'data.attributes.email',
-            ),
-        );
-
+    public static function execute(Customer $customer, array $request): Customer
+    {
         // Execute the ChangePasswordAction
-        $password_reset = UpdatePasswordAction::execute(
-            customer: $customer,
-            request: $request,
-        );
+        UpdatePasswordAction::execute(customer: $customer, request: $request);
 
-        // Delete the token
-        if ($password_reset) {
-            DeleteTokenAction::execute(
-                customer: $customer
-            );
-        }
+        // Dispatch the PasswordResetEvent
+        PasswordResetEvent::dispatch($customer);
 
-        // Publish to the notification service
-        PasswordResetConfirmationEvent::dispatch($customer);
+        // Return the customer
+        return $customer;
     }
 }

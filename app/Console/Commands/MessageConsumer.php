@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Console\Commands;
 
 use App\Services\RabbitMQService;
-use Domain\Customer\Actions\Pin\CustomerUpdateAction;
-use Domain\Mobile\Actions\Registration\CustomerCreatedAction;
+use Domain\Customer\Actions\Pin\CustomerHasPinUpdateAction;
+use Domain\Customer\Actions\Registration\CustomerCreatedAction;
 use Exception;
 use Illuminate\Console\Command;
 
@@ -27,7 +27,7 @@ final class MessageConsumer extends Command
             // Define the action classes array
             $actionMappings = [
                 'CustomerCreatedAction' => new CustomerCreatedAction,
-                'PinCreatedAction' => new CustomerUpdateAction,
+                'PinCreatedAction' => new CustomerHasPinUpdateAction,
             ];
 
             // Get the action

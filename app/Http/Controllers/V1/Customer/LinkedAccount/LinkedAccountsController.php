@@ -10,9 +10,9 @@ use Illuminate\Http\Request;
 
 final class LinkedAccountsController extends Controller
 {
-    public function __invoke(
-        Request $request,
-    ): array {
-        return LinkedAccountsAction::execute();
+    public function __invoke(Request $request): array
+    {
+        // Execute and return the LinkedAccountsAction
+        return LinkedAccountsAction::execute(customer: auth(guard: 'customer')->user());
     }
 }

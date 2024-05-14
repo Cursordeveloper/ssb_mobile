@@ -4,19 +4,14 @@ declare(strict_types=1);
 
 namespace Domain\Customer\Actions\LinkedAccounts;
 
-use Illuminate\Support\Facades\Http;
+use App\Services\Customer\Requests\LinkedAccount\LinkNewAccountApprovalRequest;
+use Domain\Mobile\Models\Customer;
 
 final class LinkAccountApprovalAction
 {
-    public static function execute(array $request): array
+    public static function execute(Customer $customer, string $linked_account, array $request): array
     {
-        // Send (request) and return the response
-        return Http::withHeaders([
-            'Content-Type' => 'application/vnd.api+json',
-            'Accept' => 'application/vnd.api+json',
-        ])->post(
-            url: config(key: 'services.susubox.ssb.susubox.ssb_customer.base_url').auth()->user()['resource_id'].'/linked-accounts/approval',
-            data: $request,
-        )->json();
+        // Post and return the http request
+        return (new LinkNewAccountApprovalRequest)->execute(customer: $customer, linked_account: $linked_account, request: $request);
     }
 }

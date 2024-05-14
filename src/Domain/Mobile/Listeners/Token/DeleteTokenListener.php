@@ -9,7 +9,7 @@ final class DeleteTokenListener implements ShouldQueue
 {
     public function handle(object $event): void
     {
-        // Delete the token after activation
-        DeleteTokenAction::execute(customer: $event->data);
+        // Delete the customer token
+        DeleteTokenAction::execute(customer: $event->customer);
     }
 }

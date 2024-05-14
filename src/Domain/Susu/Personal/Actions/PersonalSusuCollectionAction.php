@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace Domain\Susu\Personal\Actions;
 
-use Illuminate\Support\Facades\Http;
+use App\Services\Susu\Requests\PersonalSusu\PersonalSusuCollectionRequest;
+use Domain\Mobile\Models\Customer;
 
 final class PersonalSusuCollectionAction
 {
-    public static function execute($auth_user): array
+    public static function execute(Customer $customer): array
     {
-        // Send the request and return the response
-        return Http::withHeaders([
-            'Content-Type' => 'application/vnd.api+json',
-            'Accept' => 'application/vnd.api+json',
-        ])->get(url: config(key: 'services.susubox.ssb_susu.base_url').'customers/'.$auth_user->resource_id.'/personal')->json();
+        // Execute and return the PersonalSusuCollectionRequest
+        return (new PersonalSusuCollectionRequest)->execute(customer: $customer);
     }
 }

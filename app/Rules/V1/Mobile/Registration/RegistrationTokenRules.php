@@ -14,7 +14,7 @@ final class RegistrationTokenRules implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         // Fetch the customer with the token
-        $customer = Customer::query()->where([['email', '=', $value]])->with(relations: 'token')->first();
+        $customer = Customer::query()->where([['phone_number', '=', $value]])->with(relations: 'token')->first();
 
         // Validation conditions
         if ($customer === null) {

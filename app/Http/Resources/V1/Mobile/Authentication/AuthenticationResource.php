@@ -14,13 +14,12 @@ final class AuthenticationResource extends JsonResource
         return [
             // Resource type and id
             'type' => 'Customer',
-            'resource_id' => $this->resource->resource_id,
 
             // Resource exposed attributes
             'attributes' => [
+                'resource_id' => $this->resource->resource_id,
                 'first_name' => $this->resource->first_name,
                 'last_name' => $this->resource->last_name,
-
                 'status' => $this->resource->status,
             ],
         ];

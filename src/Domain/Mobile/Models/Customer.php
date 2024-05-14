@@ -14,9 +14,28 @@ final class Customer extends Authenticatable implements JWTSubject
     use HasFactory;
 
     public $timestamps = false;
+
     protected $guarded = ['id'];
+
+    protected $hidden = [
+        'id',
+        'password',
+    ];
+
     protected string $guard = 'customer';
-    protected $fillable = ['id', 'resource_id', 'first_name', 'last_name', 'phone_number', 'email', 'password', 'has_pin', 'status'];
+
+    protected $fillable = [
+        'id',
+        'resource_id',
+        'first_name',
+        'last_name',
+        'phone_number',
+        'email',
+        'password',
+        'has_pin',
+        'accepted_terms',
+        'status',
+    ];
 
     public function getRouteKeyName(): string
     {

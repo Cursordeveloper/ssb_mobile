@@ -10,13 +10,9 @@ use Domain\Susu\Personal\Actions\PersonalSusuApprovalAction;
 
 final class PersonalSusuApprovalController extends Controller
 {
-    public function __invoke(
-        PinApprovalRequest $request,
-        string $susu,
-    ): array {
-        return PersonalSusuApprovalAction::execute(
-            request: $request->validated(),
-            susu_resource: $susu,
-        );
+    public function __invoke(string $susu, PinApprovalRequest $request): array
+    {
+        // Execute and return the PersonalSusuApprovalAction
+        return PersonalSusuApprovalAction::execute(customer: auth()->user(), susu: $susu, request: $request->validated());
     }
 }

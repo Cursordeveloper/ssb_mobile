@@ -5,23 +5,15 @@ declare(strict_types=1);
 namespace App\Rules\V1\Customer\Pin;
 
 use Closure;
-use Domain\Mobile\Models\Customer;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Support\Facades\Route;
 
 final class CreatePinRule implements ValidationRule
 {
-    public function validate(
-        string $attribute,
-        mixed $value,
-        Closure $fail,
-    ): void {
-        // Fetch the customer pin data
-        $pin = Customer::query()
-            ->where([['email', '=', $value]])
-            ->first(columns: 'has_pin');
-
+    public function validate(string $attribute, mixed $value, Closure $fail): void
+    {
         // Validation conditions
-        if (data_get(target: $pin, key: 'has_pin') === true) {
+        if (Route::input(key: 'customer')['has_pin'] === true) {
             $fail('You have already created your pin.');
         }
     }

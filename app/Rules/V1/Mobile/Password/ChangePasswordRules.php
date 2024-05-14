@@ -10,11 +10,8 @@ use Illuminate\Support\Facades\Hash;
 
 final class ChangePasswordRules implements ValidationRule
 {
-    public function validate(
-        string $attribute,
-        mixed $value,
-        Closure $fail,
-    ): void {
+    public function validate(string $attribute, mixed $value, Closure $fail): void
+    {
         if (! Hash::check($value, auth()->user()['password'])) {
             $fail('The current password provided is incorrect.');
         } elseif ($value === request()->input(key: 'data.attributes.password')) {

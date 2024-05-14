@@ -9,16 +9,8 @@ use Domain\Mobile\Models\Token;
 
 final class DeleteTokenAction
 {
-    public static function execute(
-        Customer $customer
-    ): void {
-        Token::query()->where(
-            column: 'customer_id',
-            operator: '=',
-            value: data_get(
-                target: $customer,
-                key: 'id'
-            )
-        )->delete();
+    public static function execute(Customer $customer): void
+    {
+        Token::query()->where(column: 'customer_id', operator: '=', value: data_get(target: $customer, key: 'id'))->delete();
     }
 }

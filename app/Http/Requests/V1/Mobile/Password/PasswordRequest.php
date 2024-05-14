@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Requests\V1\Mobile\Password;
 
 use App\Http\Requests\Shared\ApiRequest;
-use App\Rules\V1\Mobile\Authentication\UnauthenticatedCustomerStatusRule;
+use App\Rules\V1\Mobile\Common\IsAccountActiveRule;
 
 final class PasswordRequest extends ApiRequest
 {
@@ -18,9 +18,9 @@ final class PasswordRequest extends ApiRequest
     {
         return [
             'data' => ['required'],
-            'data.type' => ['required', 'string', 'in:Password'],
+            'data.type' => ['required', 'string', 'in:Customer'],
 
-            'data.attributes.email' => ['required', 'exists:customers,email', new UnauthenticatedCustomerStatusRule()],
+            'data.attributes.phone_number' => ['required', 'exists:customers,phone_number', new IsAccountActiveRule],
         ];
     }
 
@@ -31,9 +31,10 @@ final class PasswordRequest extends ApiRequest
 
             'data.type.required' => 'The type is required',
             'data.type.string' => 'The type must be of a string',
+            'data.type.in' => 'The type is invalid',
 
-            'data.attributes.email.required' => 'The email is required.',
-            'data.attributes.email.exists' => 'The email does not exist.',
+            'data.attributes.phone_number.required' => 'The phone number is required.',
+            'data.attributes.phone_number.exists' => 'The phone number does not exist.',
         ];
     }
 }

@@ -10,14 +10,9 @@ use Illuminate\Http\Request;
 
 final class PersonalSusuController extends Controller
 {
-    public function __invoke(
-        $susu,
-        Request $request,
-    ): array {
-        // Get the personal susu
-        return PersonalSusuAction::execute(
-            $susu,
-            $request->toArray()
-        );
+    public function __invoke(string $susu, Request $request): array
+    {
+        // Execute and return the PersonalSusuAction
+        return PersonalSusuAction::execute(customer: auth()->user(), susu: $susu, request: $request->toArray());
     }
 }

@@ -18,10 +18,9 @@ final class CreatePinRequest extends ApiRequest
     public function rules(): array
     {
         return [
-            'data' => ['required'],
-            'data.type' => ['required', 'string', 'in:Pins'],
+            'data' => ['required', new UnauthenticatedCustomerStatusRule, new CreatePinRule],
+            'data.type' => ['required', 'string', 'in:Pin'],
 
-            'data.attributes.email' => ['required', 'exists:customers,email', new UnauthenticatedCustomerStatusRule(), new CreatePinRule()],
             'data.attributes.pin' => ['required', 'integer', 'digits_between:4,4', 'confirmed'],
         ];
     }
@@ -33,9 +32,6 @@ final class CreatePinRequest extends ApiRequest
 
             'data.type.required' => 'The type is required',
             'data.type.string' => 'The type must be of a string',
-
-            'data.attributes.email.required' => 'The email is required.',
-            'data.attributes.email.exists' => 'The email does not exist.',
 
             'data.attributes.pin.required' => 'The pin is required.',
             'data.attributes.pin.integer' => 'The pin must be an integer.',

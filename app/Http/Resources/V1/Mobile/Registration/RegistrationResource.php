@@ -20,11 +20,21 @@ final class RegistrationResource extends JsonResource
                 'resource_id' => $this->resource->resource_id,
                 'first_name' => $this->resource->first_name,
                 'last_name' => $this->resource->last_name,
-                'email' => $this->resource->email,
                 'phone_number' => $this->resource->phone_number,
-
+                'email' => $this->resource->email,
+                'password_setup' => $this->password(),
+                'pin_setup' => $this->resource->has_pin,
                 'status' => $this->resource->status,
             ],
         ];
+    }
+
+    protected function password(): bool
+    {
+        if ($this->resource->password === null || empty($this->resource->password)) {
+            return false;
+        }
+
+        return true;
     }
 }

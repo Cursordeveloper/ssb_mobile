@@ -20,8 +20,7 @@ final class PasswordResetRequest extends ApiRequest
             'data' => ['required'],
             'data.type' => ['required', 'string', 'in:Password'],
 
-            'data.attributes.email' => ['required', 'exists:customers,email', new ResetPasswordRules()],
-            'data.attributes.password' => ['required', 'between:6,20', 'confirmed'],
+            'data.attributes.password' => ['required', 'between:6,20', 'confirmed', new ResetPasswordRules],
         ];
     }
 

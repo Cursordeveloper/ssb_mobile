@@ -5,19 +5,20 @@ declare(strict_types=1);
 namespace Domain\Mobile\Actions\Password;
 
 use Domain\Mobile\Models\Customer;
+use Exception;
 use Illuminate\Support\Facades\Hash;
 
 final class UpdatePasswordAction
 {
-    public static function execute(
-        Customer $customer,
-        array $request,
-    ): bool {
-        $customer = Customer::query()->where(column: 'id', operator: '=', value: data_get(target: $customer, key: 'id'))->first();
+    public static function execute(Customer $customer, array $request): void
+    {
+        // Update the password
+        $customer->password = Hash::make(value: data_get(target: $request, key: 'data.attributes.password'));
+        $password_reset = $customer->save();
 
-        $customer->password = Hash::make(
-            value: data_get(target: $request, key: 'data.attributes.password')
-        );
-        return $customer->save();
+        // Return PasswordResetException
+        if (! $password_reset) {
+            throw new Exception(message: 'Cannot update password.');
+        }
     }
 }

@@ -13,6 +13,6 @@ final class LinkAccountController extends Controller
     public function __invoke(LinkAccountRequest $request): array
     {
         // Execute and return the LinkAccountAction
-        return LinkAccountAction::execute(request: $request->validated());
+        return LinkAccountAction::execute(customer: auth()->user(), request: $request->validated());
     }
 }
