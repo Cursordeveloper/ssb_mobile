@@ -22,7 +22,6 @@ final class ResponseBuilder
             'description' => $description,
             'meta' => [
                 'version' => '1.0',
-                'timestamp' => now()->toDateTime(),
             ],
             'data' => $data->data,
             'data_meta' => $data->meta,
@@ -43,7 +42,6 @@ final class ResponseBuilder
             'description' => $description,
             'meta' => [
                 'version' => '1.0',
-                'timestamp' => now()->toDateTime(),
             ],
             'data' => $data,
         ]);
@@ -63,7 +61,6 @@ final class ResponseBuilder
             'description' => $description,
             'meta' => [
                 'version' => '1.0',
-                'timestamp' => now()->toDateTime(),
             ],
             'errors' => $error,
         ]);
@@ -82,7 +79,6 @@ final class ResponseBuilder
             'description' => $description,
             'meta' => [
                 'version' => '1.0',
-                'timestamp' => now()->toDateTime(),
             ],
         ]);
     }
@@ -100,10 +96,9 @@ final class ResponseBuilder
             'message' => $message,
             'meta' => [
                 'version' => '1.0',
-                'timestamp' => now()->toDateTime(),
             ],
-            'data' => $user,
             'token' => $token,
+            'data' => $user,
         ]);
     }
 }
