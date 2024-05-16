@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 use App\Http\Controllers\V1\Customer\Registration\CustomerCreatedController;
 use App\Http\Controllers\V1\Customer\Registration\CustomerHasPinUpdateController;
-use App\Http\Controllers\V1\Mobile\Registration\RegistrationPersonalInformationController;
 use App\Http\Controllers\V1\Mobile\Registration\RegistrationNewTokenController;
 use App\Http\Controllers\V1\Mobile\Registration\RegistrationPasswordCreationController;
+use App\Http\Controllers\V1\Mobile\Registration\RegistrationPersonalInformationController;
 use App\Http\Controllers\V1\Mobile\Registration\RegistrationTokenVerificationController;
 use App\Http\Controllers\V1\Mobile\Registration\RegistrationVerificationController;
 use Illuminate\Support\Facades\Route;
