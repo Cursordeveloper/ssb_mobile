@@ -10,14 +10,14 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Symfony\Component\HttpFoundation\Response;
 
-final class ApiRequest extends FormRequest
+abstract class ApiRequest extends FormRequest
 {
-    protected function failedValidation(Validator $validator): void
+    protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(ResponseBuilder::unprocessableEntityResponseBuilder(
-            status: true,
+            status: false,
             code: Response::HTTP_UNPROCESSABLE_ENTITY,
-            message: 'Unprocessable request.',
+            message: 'Request unprocessable.',
             description: 'The request is invalid. Check it and try again.',
             error: $validator->errors()->all()
         ));
