@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Services\Customer\Requests\Scheme;
 
 use App\Services\Customer\CustomerService;
-use Domain\Mobile\Models\Customer;
 use Illuminate\Support\Facades\Http;
 
 final class CustomerServiceLinkedSchemesRequest
