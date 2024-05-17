@@ -12,9 +12,7 @@ Route::group(['prefix' => 'customers', 'as' => 'customers.'], function (): void 
         Route::post(
             uri: '{customer}/pins',
             action: PinCreateController::class,
-        )->name(
-            name: 'store',
-        );
+        )->name(name: 'pins');
     });
 
     // Protected routes
@@ -22,8 +20,6 @@ Route::group(['prefix' => 'customers', 'as' => 'customers.'], function (): void 
         Route::post(
             uri: 'pins/change',
             action: PinChangeController::class
-        )->name(
-            name: 'pins.change'
-        );
+        )->name(name: 'pins.change');
     });
 });
