@@ -22,7 +22,7 @@ final class RegistrationPasswordCreationRequest extends ApiRequest
 
             'data.attributes' => ['required'],
 
-            'data.attributes.email' => ['email', 'unique:customers,email'],
+            'data.attributes.email' => ['nullable', 'email', 'unique:customers,email'],
             'data.attributes.password' => ['required', 'between:6,20'],
         ];
     }
@@ -39,6 +39,7 @@ final class RegistrationPasswordCreationRequest extends ApiRequest
             'data.attributes' => 'The attributes field is required.',
 
             'data.attributes.email.email' => 'The email address is invalid',
+            'data.attributes.email.nullable' => 'The email field is empty',
             'data.attributes.email.unique' => 'The email address is already taken',
 
             'data.attributes.password.required' => 'The password is required.',
