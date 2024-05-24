@@ -22,7 +22,7 @@ final class RegistrationPasswordCreationRequest extends ApiRequest
 
             'data.attributes' => ['required'],
 
-            'data.attributes.email' => ['email', 'unique:customers,email'],
+            'data.attributes.email' => ['nullable', 'email', 'unique:customers,email'],
             'data.attributes.password' => ['required', 'between:6,20'],
         ];
     }

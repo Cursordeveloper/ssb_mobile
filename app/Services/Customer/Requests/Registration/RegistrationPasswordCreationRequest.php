@@ -19,9 +19,8 @@ final class RegistrationPasswordCreationRequest
 
     public function execute(Customer $customer, array $data): void
     {
-        Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->post(
-            url: $this->service->base_url.$customer->resource_id.'/registrations/update',
-            data: $data,
-        )->json();
+        Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])
+            ->post(url: $this->service->base_url.$customer->resource_id.'/registrations/update', data: $data)
+            ->json();
     }
 }
