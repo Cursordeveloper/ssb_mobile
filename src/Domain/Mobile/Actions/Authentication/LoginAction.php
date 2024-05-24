@@ -20,7 +20,7 @@ final class LoginAction
         $customer = CustomerGetAction::execute(resource: data_get(target: $request, key: 'data.attributes.phone_number'));
 
         // Return the customer complete registration
-        if (empty(data_get(target: $customer, key: 'password'))) {
+        if (empty($customer->password)) {
             return ResponseBuilder::resourcesResponseBuilder(
                 status: false,
                 code: Response::HTTP_PARTIAL_CONTENT,
@@ -31,7 +31,7 @@ final class LoginAction
         }
 
         // Return the customer has no pin
-        if (data_get(target: $customer, key: 'has_pin') === false) {
+        if ($customer->has_pin === false) {
             return ResponseBuilder::resourcesResponseBuilder(
                 status: false,
                 code: Response::HTTP_PARTIAL_CONTENT,
@@ -55,6 +55,8 @@ final class LoginAction
                 description: 'Incorrect phone number or password.',
             );
         }
+
+        // Return the login success response
         return ResponseBuilder::tokenResponseBuilder(
             status: true,
             code: Response::HTTP_OK,

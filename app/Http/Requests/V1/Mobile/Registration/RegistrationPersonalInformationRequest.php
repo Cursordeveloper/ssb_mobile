@@ -24,7 +24,7 @@ final class RegistrationPersonalInformationRequest extends ApiRequest
             'data.attributes.first_name' => ['required', 'string'],
             'data.attributes.last_name' => ['required', 'string'],
 
-            'data.attributes.email' => ['email', 'unique:customers,email'],
+            'data.attributes.email' => ['nullable', 'email', 'unique:customers,email'],
             'data.attributes.password' => ['required', 'between:6,20'],
 
             'data.attributes.accepted_terms' => ['required', 'accepted'],

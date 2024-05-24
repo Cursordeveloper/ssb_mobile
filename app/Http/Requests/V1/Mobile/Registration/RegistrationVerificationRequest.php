@@ -20,7 +20,7 @@ final class RegistrationVerificationRequest extends ApiRequest
             'data.type' => ['required', 'string', 'in:Customer'],
             'data.attributes' => ['required'],
 
-            'data.attributes.phone_number' => ['required', 'min:10', 'unique:customers,phone_number', 'regex:/^([0-9\s\-\+\(\)]*)$/'],
+            'data.attributes.phone_number' => ['required', 'min:10', 'regex:/^([0-9\s\-\+\(\)]*)$/'],
         ];
     }
 
