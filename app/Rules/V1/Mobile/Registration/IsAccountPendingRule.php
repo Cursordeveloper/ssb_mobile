@@ -17,7 +17,7 @@ final class IsAccountPendingRule implements ValidationRule
         $status = Customer::query()->where([['phone_number', '=', $value]])->first(columns: 'status');
 
         // Validation conditions
-        if (data_get(target: $status, key: 'status') !== CustomerStatus::Pending->value) {
+        if ($status->status !== CustomerStatus::Pending->value) {
             $fail('This account is '.$status['status'].'.');
         }
     }

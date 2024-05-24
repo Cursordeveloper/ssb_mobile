@@ -39,7 +39,6 @@ final class RegistrationPasswordCreationRequest extends ApiRequest
             'data.attributes' => 'The attributes field is required.',
 
             'data.attributes.email.email' => 'The email address is invalid',
-            'data.attributes.email.nullable' => 'The email field is empty',
             'data.attributes.email.unique' => 'The email address is already taken',
 
             'data.attributes.password.required' => 'The password is required.',
