@@ -32,7 +32,7 @@ final class RegistrationVerificationAction
             );
         }
 
-        // Return the [Incomplete registration] response if true
+        // Return the [Incomplete registration] response if phone is used
         if (! empty($customer) && $customer->status === CustomerStatus::Active->value) {
             return ResponseBuilder::resourcesResponseBuilder(
                 status: false,
