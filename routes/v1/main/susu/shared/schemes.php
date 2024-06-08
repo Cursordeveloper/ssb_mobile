@@ -7,10 +7,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'customers/susus/schemes', 'as' => 'customers.susus.schemes.', 'middleware' => 'auth:customer'], function (): void {
     // Get all schemes route
-    Route::get(
-        uri: '',
-        action: SchemesController::class
-    )->name(
-        name: 'index'
-    );
+    Route::get(uri: '', action: SchemesController::class)
+        ->name(name: 'index');
 });
