@@ -11,32 +11,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'customers/susus', 'as' => 'customers.susus.', 'middleware' => 'auth:customer'], function (): void {
     // SususController route
-    Route::get(
-        uri: '',
-        action: SususController::class
-    )->name(name: 'index');
+    Route::get(uri: '', action: SususController::class)
+        ->name(name: 'index');
 
     // SusuBalanceController route
-    Route::post(
-        uri: '{susu}/balances',
-        action: SusuBalanceController::class
-    )->name(name: 'balances');
+    Route::post(uri: '{susu}/balances', action: SusuBalanceController::class)
+        ->name(name: 'balances');
 
     // SusuPauseController route
-    Route::post(
-        uri: '{susu}/pause',
-        action: SusuPauseController::class
-    )->name(name: 'pause');
+    Route::post(uri: '{susu}/pause', action: SusuPauseController::class)
+        ->name(name: 'pause');
 
     // SusuCloseController route
-    Route::post(
-        uri: '{susu}/close',
-        action: SusuCloseController::class
-    )->name(name: 'close');
+    Route::post(uri: '{susu}/close', action: SusuCloseController::class)
+        ->name(name: 'close');
 
     // SusuTransactionsController route
-    Route::get(
-        uri: '{susu}/transactions',
-        action: SusuTransactionsController::class
-    )->name(name: 'transactions');
+    Route::get(uri: '{susu}/transactions', action: SusuTransactionsController::class)
+        ->name(name: 'transactions');
 });
