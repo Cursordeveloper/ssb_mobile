@@ -23,8 +23,8 @@ final class FlexySusuCreateRequest extends ApiRequest
 
             'data.attributes.account_name' => ['required', 'string'],
 
-            'data.attributes.min_amount' => ['required', 'numeric', 'gt:4.99'],
-            'data.attributes.max_amount' => ['required', 'numeric', 'gt:4.99'],
+//            'data.attributes.min_amount' => ['required', 'numeric', 'gt:4.99'],
+//            'data.attributes.max_amount' => ['required', 'numeric', 'gt:4.99'],
 
             'data.attributes.recurring_debit' => ['bool'],
 
@@ -46,10 +46,10 @@ final class FlexySusuCreateRequest extends ApiRequest
             'data.attributes.account_name.required' => 'The account name is required.',
             'data.attributes.account_name.string' => 'The account name must be of a string.',
 
-            'data.attributes.min_amount.required' => 'The minimum amount is required.',
-            'data.attributes.min_amount.gt' => 'The minimum amount cannot be less than GHS5.00.',
-            'data.attributes.max_amount.required' => 'The maximum amount is required.',
-            'data.attributes.max_amount.gt' => 'The maximum amount cannot be less than GHS5.00.',
+//            'data.attributes.min_amount.required' => 'The minimum amount is required.',
+//            'data.attributes.min_amount.gt' => 'The minimum amount cannot be less than GHS5.00.',
+//            'data.attributes.max_amount.required' => 'The maximum amount is required.',
+//            'data.attributes.max_amount.gt' => 'The maximum amount cannot be less than GHS5.00.',
 
             'data.attributes.recurring_debit' => 'The recurring debit must be of a boolean type.',
 
