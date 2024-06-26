@@ -13,6 +13,6 @@ final class SusuTransactionsController extends Controller
     public function __invoke(string $susu, Request $request): array
     {
         // Execute the SusuTransactionsAction
-        return SusuTransactionsAction::execute(customer: auth()->user(), susu: $susu);
+        return SusuTransactionsAction::execute(customer: auth()->user(), susu: $susu, request: $request);
     }
 }
