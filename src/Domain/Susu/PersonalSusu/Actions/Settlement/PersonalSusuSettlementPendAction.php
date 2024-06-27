@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Susu\PersonalSusu\Actions\Settlement;
 
 use App\Services\Susu\Requests\PersonalSusu\Settlement\PersonalSusuSettlementPendRequest;
-use App\Services\Susu\Requests\PersonalSusu\Settlement\PersonalSusuSettlementRequest;
 use Domain\Mobile\Models\Customer;
 
 final class PersonalSusuSettlementPendAction
