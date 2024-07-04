@@ -8,7 +8,7 @@ use App\Services\Customer\CustomerService;
 use Domain\Mobile\Models\Customer;
 use Illuminate\Support\Facades\Http;
 
-final class KycRequest
+final class CustomerServiceKycRequest
 {
     public CustomerService $service;
 
@@ -19,8 +19,8 @@ final class KycRequest
 
     public function execute(Customer $customer): array
     {
-        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->get(
-            url: $this->service->base_url.$customer->resource_id.'/kycs',
-        )->json();
+        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])
+            ->get(url: $this->service->base_url.$customer->resource_id.'/kycs')
+            ->json();
     }
 }
