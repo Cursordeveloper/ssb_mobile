@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\V1\Susu\PersonalSusu\Settlement\PersonalSusuSettlementApprovalController;
+use App\Http\Controllers\V1\Susu\PersonalSusu\Settlement\PersonalSusuSettlementCancellationController;
 use App\Http\Controllers\V1\Susu\PersonalSusu\Settlement\PersonalSusuSettlementController;
 use App\Http\Controllers\V1\Susu\PersonalSusu\Settlement\PersonalSusuSettlementPendController;
 use App\Http\Controllers\V1\Susu\PersonalSusu\Settlement\PersonalSusuSettlementZeroOutController;
@@ -21,7 +22,11 @@ Route::group(['prefix' => 'customers/susus/personal-susus', 'as' => 'customers.s
     Route::post(uri: '{susu}/zero-outs/settlements', action: PersonalSusuSettlementZeroOutController::class)
         ->name(name: 'zero-outs.settlements.store');
 
-    // PersonalSusu settlement approval
+    // PersonalSusu settlement cancellations route
+    Route::post(uri: '{susu}/settlements/{settlement}/cancellations', action: PersonalSusuSettlementCancellationController::class)
+        ->name(name: 'settlements.cancellations.update');
+
+    // PersonalSusu settlement approval route
     Route::post(uri: '{susu}/settlements/{settlement}/approvals', action: PersonalSusuSettlementApprovalController::class)
         ->name(name: 'settlements.update');
 });
