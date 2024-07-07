@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\V1\Susu\GoalGetterSusu\Payment\GoalGetterSusuPaymentAmountController;
 use App\Http\Controllers\V1\Susu\GoalGetterSusu\Payment\GoalGetterSusuPaymentApprovalController;
 use App\Http\Controllers\V1\Susu\GoalGetterSusu\Payment\GoalGetterSusuPaymentCancellationController;
 use App\Http\Controllers\V1\Susu\GoalGetterSusu\Payment\GoalGetterSusuPaymentController;
@@ -11,6 +12,10 @@ Route::group(['prefix' => 'customers/susus/goal-getter-susus', 'as' => 'customer
     // GoalGetterSusu payment route
     Route::post(uri: '{susu}/payments', action: GoalGetterSusuPaymentController::class)
         ->name(name: 'payments.store');
+
+    // GoalGetterSusu payment amount route
+    Route::post(uri: '{susu}/payments/amounts', action: GoalGetterSusuPaymentAmountController::class)
+        ->name(name: 'payments.amounts.store');
 
     // GoalGetterSusu payment cancellations route
     Route::post(uri: '{susu}/payments/{payment}/cancellations', action: GoalGetterSusuPaymentCancellationController::class)
