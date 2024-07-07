@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Susu\GoalGetterSusu\Actions;
 
-use App\Services\Susu\Requests\GoalGetterSusu\GoalGetterSusuApprovalRequest;
+use App\Services\Susu\Requests\GoalGetterSusu\SusuServiceGoalGetterSusuApprovalRequest;
 use Domain\Mobile\Models\Customer;
 
 final class GoalGetterSusuApprovalAction
@@ -12,6 +12,6 @@ final class GoalGetterSusuApprovalAction
     public static function execute(Customer $customer, string $susu, array $request): array
     {
         // Send the request and return the response
-        return (new GoalGetterSusuApprovalRequest)->execute(customer: $customer, susu: $susu, request: $request);
+        return (new SusuServiceGoalGetterSusuApprovalRequest)->execute(customer: $customer, susu: $susu, request: $request);
     }
 }

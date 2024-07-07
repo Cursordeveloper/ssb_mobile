@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Mobile\Jobs\Registration;
 
-use App\Services\Notification\Requests\Registration\RegistrationVerificationRequest;
+use App\Services\Notification\Requests\Registration\NotificationServiceRegistrationVerificationRequest;
 use Domain\Mobile\Actions\Common\Token\GenerateTokenAction;
 use Domain\Mobile\Data\Registration\RegistrationVerificationData;
 use Domain\Mobile\Models\Customer;
@@ -31,6 +31,6 @@ final class RegistrationVerificationJob implements ShouldQueue
         $token = GenerateTokenAction::execute(customer: $this->customer);
 
         // Publish message through http
-        (new RegistrationVerificationRequest)->execute(data: RegistrationVerificationData::toArray(customer: $this->customer, token: $token));
+        (new NotificationServiceRegistrationVerificationRequest)->execute(data: RegistrationVerificationData::toArray(customer: $this->customer, token: $token));
     }
 }

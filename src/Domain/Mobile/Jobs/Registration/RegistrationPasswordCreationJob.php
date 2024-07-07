@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Mobile\Jobs\Registration;
 
-use App\Services\Customer\Requests\Registration\RegistrationPasswordCreationRequest;
+use App\Services\Customer\Requests\Registration\CustomerServiceRegistrationPasswordCreationRequest;
 use Domain\Mobile\Data\Registration\CustomerData;
 use Domain\Mobile\Models\Customer;
 use Illuminate\Bus\Queueable;
@@ -30,6 +30,6 @@ final class RegistrationPasswordCreationJob implements ShouldQueue
         $data = CustomerData::toArray(customer: $this->customer);
 
         // Publish message through http
-        (new RegistrationPasswordCreationRequest)->execute(customer: $this->customer, data: $data);
+        (new CustomerServiceRegistrationPasswordCreationRequest)->execute(customer: $this->customer, data: $data);
     }
 }
