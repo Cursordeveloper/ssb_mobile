@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Customer\Actions\LinkedAccounts;
 
-use App\Services\Customer\Requests\LinkedAccount\LinkedAccountsRequest;
+use App\Services\Customer\Requests\LinkedAccount\CustomerServiceLinkedAccountsRequest;
 use Domain\Mobile\Models\Customer;
 
 final class LinkedAccountsAction
@@ -12,6 +12,6 @@ final class LinkedAccountsAction
     public static function execute(Customer $customer): array
     {
         // Send and return the http request
-        return (new LinkedAccountsRequest)->execute(customer: $customer);
+        return (new CustomerServiceLinkedAccountsRequest)->execute(customer: $customer);
     }
 }

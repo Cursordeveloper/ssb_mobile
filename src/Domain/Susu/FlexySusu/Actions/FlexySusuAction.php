@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Susu\FlexySusu\Actions;
 
-use App\Services\Susu\Requests\FlexySusu\FlexySusuRequest;
+use App\Services\Susu\Requests\FlexySusu\SusuServiceFlexySusuRequest;
 use Domain\Mobile\Models\Customer;
 
 final class FlexySusuAction
@@ -12,6 +12,6 @@ final class FlexySusuAction
     public static function execute(Customer $customer, string $susu, array $request): array
     {
         // Execute the FlexySusuCreateRequest
-        return (new FlexySusuRequest)->execute(customer: $customer, susu: $susu);
+        return (new SusuServiceFlexySusuRequest)->execute(customer: $customer, susu: $susu);
     }
 }
