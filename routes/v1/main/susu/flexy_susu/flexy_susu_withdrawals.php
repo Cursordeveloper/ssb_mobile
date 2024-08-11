@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\V1\Susu\FlexySusu\Withdrawal\FlexySusuFullWithdrawalController;
 use App\Http\Controllers\V1\Susu\FlexySusu\Withdrawal\FlexySusuWithdrawalApprovalController;
 use App\Http\Controllers\V1\Susu\FlexySusu\Withdrawal\FlexySusuWithdrawalCancellationController;
 use App\Http\Controllers\V1\Susu\FlexySusu\Withdrawal\FlexySusuWithdrawalController;
@@ -11,6 +12,10 @@ Route::group(['prefix' => 'customers/susus/flexy-susus', 'as' => 'customers.susu
     // Flexy withdrawal route
     Route::post(uri: '{susu}/withdrawals', action: FlexySusuWithdrawalController::class)
         ->name(name: 'withdrawals.store');
+
+    // FlexySusu full withdrawal route
+    Route::post(uri: '{susu}/full/withdrawals', action: FlexySusuFullWithdrawalController::class)
+        ->name(name: 'full.withdrawals.store');
 
     // Flexy withdrawal cancellations route
     Route::post(uri: '{susu}/withdrawals/{withdrawal}/cancellations', action: FlexySusuWithdrawalCancellationController::class)

@@ -13,7 +13,7 @@ Route::group(['prefix' => 'customers/susus/biz-susus', 'as' => 'customers.susus.
     Route::post(uri: '{susu}/withdrawals', action: BizSusuWithdrawalController::class)
         ->name(name: 'withdrawals.store');
 
-    // GoalGetterSusu full withdrawal route
+    // BizSusu full withdrawal route
     Route::post(uri: '{susu}/full/withdrawals', action: BizSusuFullWithdrawalController::class)
         ->name(name: 'full.withdrawals.store');
 
