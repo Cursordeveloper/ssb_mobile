@@ -31,7 +31,7 @@ final class PinApprovalRequest extends ApiRequest
             'data.type.string' => 'The type must be of a string.',
 
             'data.attributes.pin.required' => 'The pin is required.',
-            'data.attributes.pin.numeric' => 'The pin must be an integer.',
+            'data.attributes.pin.numeric' => 'The pin must be must contain numbers only.',
             'data.attributes.pin.digits_between' => 'The pin length must be 4 digits.',
         ];
     }
