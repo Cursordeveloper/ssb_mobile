@@ -21,7 +21,7 @@ final class PinChangeRequest extends ApiRequest
             'data.type' => ['required', 'string', 'in:Pin'],
 
             'data.attributes.pin' => ['required'],
-            'data.attributes.new_pin' => ['required', 'integer', 'digits_between:4,4', 'confirmed', new PinChangeRules],
+            'data.attributes.new_pin' => ['required', 'numeric', 'digits_between:4,4', 'confirmed', new PinChangeRules],
         ];
     }
 
@@ -36,7 +36,7 @@ final class PinChangeRequest extends ApiRequest
             'data.attributes.pin.required' => 'The current pin is required',
 
             'data.attributes.new_pin.required' => 'The pin is required.',
-            'data.attributes.new_pin.integer' => 'The pin must be an integer.',
+            'data.attributes.pin.numeric' => 'The pin must be must contain numbers only.',
             'data.attributes.new_pin.digits_between' => 'The pin length must be 4 digits.',
             'data.attributes.new_pin.confirmed' => 'The pin confirmation does not match',
         ];
