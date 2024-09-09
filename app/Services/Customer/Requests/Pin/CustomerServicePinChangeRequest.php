@@ -20,7 +20,7 @@ final class CustomerServicePinChangeRequest
     public function execute(Customer $customer, array $request): array
     {
         return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])
-            ->post(url: $this->service->base_url.$customer->resource_id.'/pin/change', data: $request)
+            ->post(url: $this->service->base_url.$customer->resource_id.'/pins/change', data: $request)
             ->json();
     }
 }

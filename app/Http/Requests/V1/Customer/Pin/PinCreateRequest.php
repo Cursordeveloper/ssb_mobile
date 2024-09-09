@@ -8,7 +8,7 @@ use App\Http\Requests\Shared\ApiRequest;
 use App\Rules\V1\Customer\Pin\CreatePinRule;
 use App\Rules\V1\Mobile\Authentication\UnauthenticatedCustomerStatusRule;
 
-final class CreatePinRequest extends ApiRequest
+final class PinCreateRequest extends ApiRequest
 {
     public function authorize(): bool
     {
@@ -21,7 +21,7 @@ final class CreatePinRequest extends ApiRequest
             'data' => ['required', new UnauthenticatedCustomerStatusRule, new CreatePinRule],
             'data.type' => ['required', 'string', 'in:Pin'],
 
-            'data.attributes.pin' => ['required', 'integer', 'digits_between:4,4', 'confirmed'],
+            'data.attributes.pin' => ['required', 'numeric', 'digits_between:4,4', 'confirmed'],
         ];
     }
 
@@ -34,7 +34,7 @@ final class CreatePinRequest extends ApiRequest
             'data.type.string' => 'The type must be of a string',
 
             'data.attributes.pin.required' => 'The pin is required.',
-            'data.attributes.pin.integer' => 'The pin must be an integer.',
+            'data.attributes.pin.numeric' => 'The pin must be must contain numbers only.',
             'data.attributes.pin.digits_between' => 'The pin length must be 4 digits.',
             'data.attributes.pin.confirmed' => 'The pin confirmation does not match',
         ];
