@@ -31,6 +31,6 @@ Route::group(['prefix' => 'customers', 'as' => 'customers.', 'middleware' => 'au
         ->middleware(middleware: 'auth:customer');
 
     // Kyc id verification confirmation route
-    Route::post(uri: '{customer}/kycs/verifications/confirmations', action: KycVerificationConfirmationController::class)
+    Route::put(uri: '{customer}/kycs/verifications/confirmations', action: KycVerificationConfirmationController::class)
         ->name(name: 'kycs.verifications.confirmations');
 });
