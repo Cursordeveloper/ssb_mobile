@@ -9,7 +9,7 @@ use App\Http\Controllers\V1\Customer\Kyc\KycVerificationConfirmationController;
 use App\Http\Controllers\V1\Customer\Kyc\KycVerificationController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'customers', 'as' => 'customers.', 'middleware' => 'auth:customer'], function (): void {
+Route::group(['prefix' => 'customers', 'as' => 'customers.'], function (): void {
     // Verify kyc id route
     Route::post(uri: 'kycs/verifications', action: KycVerificationController::class)
         ->name(name: 'kycs.verifications')
