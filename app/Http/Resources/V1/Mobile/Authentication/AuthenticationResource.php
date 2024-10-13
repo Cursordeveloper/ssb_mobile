@@ -18,6 +18,7 @@ final class AuthenticationResource extends JsonResource
             // Resource exposed attributes
             'attributes' => [
                 'resource_id' => $this->resource->resource_id,
+                'phone_number' => $this->resource->phone_number,
                 'first_name' => $this->resource->first_name,
                 'last_name' => $this->resource->last_name,
                 'status' => $this->resource->status,
