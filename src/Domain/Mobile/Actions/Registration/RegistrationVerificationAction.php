@@ -24,7 +24,7 @@ final class RegistrationVerificationAction
         // Evaluate the $customer and take appropriate action
         return match (true) {
             $customer === null => self::customerCreate(request: $request),
-            $customer->status === CustomerStatus::Pending->value => self::customerToken(customer: $customer),
+            $customer->status === CustomerStatus::Pending->value || $customer->status === CustomerStatus::Verified->value => self::customerToken(customer: $customer),
             $customer->password === null => ResponseBuilder::resourcesResponseBuilder(status: false, code: Response::HTTP_PARTIAL_CONTENT, message: 'Incomplete registration.', description: 'You have not created a password for this account.', data: new RegistrationResource(resource: $customer)),
 
             default => ResponseBuilder::resourcesResponseBuilder(
@@ -65,7 +65,7 @@ final class RegistrationVerificationAction
             code: Response::HTTP_OK,
             message: 'Request successful.',
             description: 'Phone number verification in progress. You will be notified shortly.',
-            data: new RegistrationResource($customer),
+            data: new RegistrationResource($customer->refresh()),
         );
     }
 }
