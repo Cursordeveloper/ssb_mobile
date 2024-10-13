@@ -56,6 +56,9 @@ final class RegistrationVerificationAction
 
     private static function customerToken(Customer $customer): JsonResponse
     {
+        // Update the customer status
+        $customer->update(['status' => CustomerStatus::Pending->value]);
+
         // Dispatch RegistrationVerificationJob
         RegistrationVerificationJob::dispatch($customer);
 
