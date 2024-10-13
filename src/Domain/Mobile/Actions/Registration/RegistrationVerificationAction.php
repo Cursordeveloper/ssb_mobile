@@ -25,7 +25,7 @@ final class RegistrationVerificationAction
         return match (true) {
             $customer === null => self::customerCreate(request: $request),
             $customer->status === CustomerStatus::Pending->value || $customer->status === CustomerStatus::Verified->value => self::customerToken(customer: $customer),
-            $customer->password === null => ResponseBuilder::resourcesResponseBuilder(status: false, code: Response::HTTP_PARTIAL_CONTENT, message: 'Incomplete registration.', description: 'You have not created a password for this account.', data: new RegistrationResource(resource: $customer)),
+            empty($customer->password) => ResponseBuilder::resourcesResponseBuilder(status: false, code: Response::HTTP_PARTIAL_CONTENT, message: 'Incomplete registration.', description: 'You have not created a password for this account.', data: new RegistrationResource(resource: $customer)),
 
             default => ResponseBuilder::resourcesResponseBuilder(
                 status: false,
@@ -56,7 +56,7 @@ final class RegistrationVerificationAction
 
     private static function customerToken(Customer $customer): JsonResponse
     {
-        // Update the customer status
+        // Update the customer status [pending]
         $customer->update(['status' => CustomerStatus::Pending->value]);
 
         // Dispatch RegistrationVerificationJob
