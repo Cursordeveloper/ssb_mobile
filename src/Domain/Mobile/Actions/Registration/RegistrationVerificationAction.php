@@ -27,7 +27,8 @@ final class RegistrationVerificationAction
         return match (true) {
             $customer === null => self::customerCreate(request: $request),
             $customer->status === CustomerStatus::Pending->value || $customer->status === CustomerStatus::Verified->value => self::customerToken(customer: $customer),
-            empty($customer->password) => self::registrationIncomplete(customer: $customer),
+            $customer->password === null || empty($customer->password) => self::registrationPassword(customer: $customer),
+            $customer->has_pin === false => self::registrationPin(customer: $customer),
 
             default => self::registeredCustomer(),
         };
@@ -69,7 +70,7 @@ final class RegistrationVerificationAction
         );
     }
 
-    private static function registrationIncomplete(Customer $customer): JsonResponse
+    private static function registrationPassword(Customer $customer): JsonResponse
     {
         // Return the resourceResponseBuilder
         return ResponseBuilder::resourcesResponseBuilder(
@@ -77,6 +78,18 @@ final class RegistrationVerificationAction
             code: Response::HTTP_PARTIAL_CONTENT,
             message: 'Incomplete registration.',
             description: 'You have not created a password for this account.',
+            data: new RegistrationResource(resource: $customer)
+        );
+    }
+
+    private static function registrationPin(Customer $customer): JsonResponse
+    {
+        // Return the resourceResponseBuilder
+        return ResponseBuilder::resourcesResponseBuilder(
+            status: false,
+            code: Response::HTTP_PARTIAL_CONTENT,
+            message: 'Incomplete registration.',
+            description: 'You have not created your SusuBox PIN for this account.',
             data: new RegistrationResource(resource: $customer)
         );
     }
