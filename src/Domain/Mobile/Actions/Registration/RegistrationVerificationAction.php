@@ -11,6 +11,7 @@ use Domain\Customer\Services\Registration\CustomerCreateService;
 use Domain\Mobile\Enums\CustomerStatus;
 use Domain\Mobile\Jobs\Registration\RegistrationVerificationJob;
 use Domain\Mobile\Models\Customer;
+use Domain\Mobile\Services\Registration\RegistrationVerificationService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -19,7 +20,7 @@ final class RegistrationVerificationAction
     public static function execute(array $request): JsonResponse
     {
         // Execute the CustomerByNumberService and return Customer
-        $customer = CustomerByNumberService::execute(
+        $customer = RegistrationVerificationService::execute(
             phone_number: data_get(target: $request, key: 'data.attributes.phone_number')
         );
 
