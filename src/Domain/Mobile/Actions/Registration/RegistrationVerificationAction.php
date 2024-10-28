@@ -18,21 +18,18 @@ final class RegistrationVerificationAction
 {
     public static function execute(array $request): JsonResponse
     {
-        // Get the customer
-        $customer = CustomerByNumberService::execute(request: $request);
+        // Execute the CustomerByNumberService and return Customer
+        $customer = CustomerByNumberService::execute(
+            phone_number: data_get(target: $request, key: 'data.attributes.phone_number')
+        );
 
         // Evaluate the $customer and take appropriate action
         return match (true) {
             $customer === null => self::customerCreate(request: $request),
             $customer->status === CustomerStatus::Pending->value || $customer->status === CustomerStatus::Verified->value => self::customerToken(customer: $customer),
-            empty($customer->password) => ResponseBuilder::resourcesResponseBuilder(status: false, code: Response::HTTP_PARTIAL_CONTENT, message: 'Incomplete registration.', description: 'You have not created a password for this account.', data: new RegistrationResource(resource: $customer)),
+            empty($customer->password) => self::registrationIncomplete(customer: $customer),
 
-            default => ResponseBuilder::resourcesResponseBuilder(
-                status: false,
-                code: Response::HTTP_UNPROCESSABLE_ENTITY,
-                message: 'Request unprocessable.',
-                description: 'The phone number is already taken.'
-            ),
+            default => self::registeredCustomer(),
         };
     }
 
@@ -69,6 +66,29 @@ final class RegistrationVerificationAction
             message: 'Request successful.',
             description: 'Phone number verification in progress. You will be notified shortly.',
             data: new RegistrationResource($customer->refresh()),
+        );
+    }
+
+    private static function registrationIncomplete(Customer $customer): JsonResponse
+    {
+        // Return the resourceResponseBuilder
+        return ResponseBuilder::resourcesResponseBuilder(
+            status: false,
+            code: Response::HTTP_PARTIAL_CONTENT,
+            message: 'Incomplete registration.',
+            description: 'You have not created a password for this account.',
+            data: new RegistrationResource(resource: $customer)
+        );
+    }
+
+    private static function registeredCustomer(): JsonResponse
+    {
+        // Return the resourceResponseBuilder
+        return ResponseBuilder::resourcesResponseBuilder(
+            status: false,
+            code: Response::HTTP_UNPROCESSABLE_ENTITY,
+            message: 'Request unprocessable.',
+            description: 'The phone number is already taken.'
         );
     }
 }
