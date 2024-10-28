@@ -17,7 +17,7 @@ final class RegistrationPasswordCreationController extends Controller
 {
     public function __invoke(Customer $customer, RegistrationPasswordCreationRequest $request): JsonResponse
     {
-        // Execute the RegistrationPasswordCreationAction
+        // Execute the RegistrationPasswordCreationAction and return the Customer
         $customer = RegistrationPasswordCreationAction::execute(customer: $customer, request: $request->validated());
 
         // Return the resourceResponseBuilder

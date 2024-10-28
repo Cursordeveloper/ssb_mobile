@@ -6,28 +6,29 @@ namespace Domain\Mobile\Actions\Registration;
 
 use Domain\Mobile\Jobs\Registration\RegistrationPasswordCreationJob;
 use Domain\Mobile\Models\Customer;
+use Domain\Mobile\Services\Registration\RegistrationPasswordCreationService;
 use Domain\Shared\Exceptions\Registration\SystemFailureExec;
-use Illuminate\Support\Facades\Hash;
+use Throwable;
 
 final class RegistrationPasswordCreationAction
 {
+    /**
+     * @throws SystemFailureExec
+     */
     public static function execute(Customer $customer, array $request): Customer
     {
-        // Update the customer status to active
-        $update = $customer->update([
-            'email' => data_get(target: $request, key: 'data.attributes.email', default: $customer->email),
-            'password' => Hash::make(data_get(target: $request, key: 'data.attributes.password')),
-        ]);
+        try {
+            // Execute the CustomerUpdatedService and return bool
+            RegistrationPasswordCreationService::execute(customer: $customer, request: $request);
 
-        // Throw the SystemFailureExec if [update] fails
-        if (! $update) {
+            // Dispatch CustomerPasswordCreatedJob
+            RegistrationPasswordCreationJob::dispatch($customer->refresh());
+
+            // Refresh and return the customer
+            return $customer->refresh();
+        } catch (Throwable $throwable) {
+            // Throw the SystemFailureExec exception
             throw new SystemFailureExec;
         }
-
-        // Dispatch CustomerPasswordCreatedJob
-        RegistrationPasswordCreationJob::dispatch($customer->refresh());
-
-        // Refresh and return the customer
-        return $customer->refresh();
     }
 }

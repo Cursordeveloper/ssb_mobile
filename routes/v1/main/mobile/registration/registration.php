@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\V1\Customer\Registration\CustomerCreatedController;
-use App\Http\Controllers\V1\Customer\Registration\CustomerHasPinUpdateController;
+use App\Http\Controllers\V1\Customer\Registration\RegistrationCreatedController;
+use App\Http\Controllers\V1\Customer\Registration\RegistrationHasPinUpdateController;
 use App\Http\Controllers\V1\Mobile\Registration\RegistrationNewTokenController;
 use App\Http\Controllers\V1\Mobile\Registration\RegistrationPasswordCreationController;
 use App\Http\Controllers\V1\Mobile\Registration\RegistrationPersonalInformationController;
@@ -33,10 +33,10 @@ Route::group(['prefix' => 'customers', 'as' => 'customers.'], function (): void 
         ->name(name: 'registrations.passwords');
 
     // Create new customer from USSD or Web API route
-    Route::post(uri: '', action: CustomerCreatedController::class)
+    Route::post(uri: '', action: RegistrationCreatedController::class)
         ->name(name: 'store');
 
     // Update customer has_pin status route
-    Route::put(uri: 'registrations/pins', action: CustomerHasPinUpdateController::class)
+    Route::put(uri: 'registrations/pins', action: RegistrationHasPinUpdateController::class)
         ->name(name: 'update');
 });
