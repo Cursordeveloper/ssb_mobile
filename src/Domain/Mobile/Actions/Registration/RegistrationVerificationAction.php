@@ -6,7 +6,6 @@ namespace Domain\Mobile\Actions\Registration;
 
 use App\Common\ResponseBuilder;
 use App\Http\Resources\V1\Mobile\Registration\RegistrationResource;
-use Domain\Customer\Services\Registration\CustomerByNumberService;
 use Domain\Customer\Services\Registration\CustomerCreateService;
 use Domain\Mobile\Enums\CustomerStatus;
 use Domain\Mobile\Jobs\Registration\RegistrationVerificationJob;
