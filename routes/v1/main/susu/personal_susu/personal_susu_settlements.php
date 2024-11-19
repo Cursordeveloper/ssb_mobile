@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\V1\Susu\PersonalSusu\Settlement\PersonalSusuAutomatedSettlementController;
 use App\Http\Controllers\V1\Susu\PersonalSusu\Settlement\PersonalSusuSettlementApprovalController;
 use App\Http\Controllers\V1\Susu\PersonalSusu\Settlement\PersonalSusuSettlementCancellationController;
 use App\Http\Controllers\V1\Susu\PersonalSusu\Settlement\PersonalSusuSettlementController;
@@ -29,4 +30,8 @@ Route::group(['prefix' => 'customers/susus/personal-susus', 'as' => 'customers.s
     // PersonalSusu settlement approval route
     Route::post(uri: '{susu}/settlements/{settlement}/approvals', action: PersonalSusuSettlementApprovalController::class)
         ->name(name: 'settlements.update');
+
+    // PersonalSusu settlement automations route
+    Route::post(uri: '{susu}/settlements/automations', action: PersonalSusuAutomatedSettlementController::class)
+        ->name(name: 'settlements.automations.update');
 });
