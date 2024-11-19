@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\V1\Susu\PersonalSusu;
+namespace App\Http\Controllers\V1\Susu\PersonalSusu\Account;
 
 use App\Http\Controllers\Controller;
-use Domain\Susu\PersonalSusu\Actions\PersonalSusuCancellationAction;
+use Domain\Susu\PersonalSusu\Actions\Account\PersonalSusuCancellationAction;
 use Illuminate\Http\Request;
 
 final class PersonalSusuCancellationController extends Controller

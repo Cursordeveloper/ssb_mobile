@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\V1\Susu\PersonalSusu;
+namespace App\Http\Controllers\V1\Susu\PersonalSusu\Account;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Customer\Pin\PinApprovalRequest;
-use Domain\Susu\PersonalSusu\Actions\PersonalSusuApprovalAction;
+use Domain\Susu\PersonalSusu\Actions\Account\PersonalSusuApprovalAction;
 
 final class PersonalSusuApprovalController extends Controller
 {

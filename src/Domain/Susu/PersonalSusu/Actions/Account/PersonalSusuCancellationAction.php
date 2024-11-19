@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Domain\Susu\PersonalSusu\Actions;
+namespace Domain\Susu\PersonalSusu\Actions\Account;
 
-use App\Services\Susu\Requests\PersonalSusu\SusuServicePersonalSusuCancellationRequest;
+use App\Services\Susu\Requests\PersonalSusu\Account\SusuServicePersonalSusuCancellationRequest;
 use Domain\Mobile\Models\Customer;
 
 final class PersonalSusuCancellationAction
