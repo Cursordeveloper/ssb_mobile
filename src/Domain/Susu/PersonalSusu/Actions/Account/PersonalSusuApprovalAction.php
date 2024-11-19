@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Domain\Susu\PersonalSusu\Actions;
+namespace Domain\Susu\PersonalSusu\Actions\Account;
 
-use App\Services\Susu\Requests\PersonalSusu\SusuServicePersonalSusuApprovalRequest;
+use App\Services\Susu\Requests\PersonalSusu\Account\SusuServicePersonalSusuApprovalRequest;
 use Domain\Mobile\Models\Customer;
 
 final class PersonalSusuApprovalAction

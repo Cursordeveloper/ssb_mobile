@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\V1\Susu\PersonalSusu;
+namespace App\Http\Controllers\V1\Susu\PersonalSusu\Account;
 
 use App\Http\Controllers\Controller;
-use Domain\Susu\PersonalSusu\Actions\PersonalSusuAction;
+use Domain\Susu\PersonalSusu\Actions\Account\PersonalSusuAction;
 use Illuminate\Http\Request;
 
 final class PersonalSusuController extends Controller

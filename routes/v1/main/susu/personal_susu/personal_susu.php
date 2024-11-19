@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\V1\Susu\PersonalSusu\PersonalSusuApprovalController;
-use App\Http\Controllers\V1\Susu\PersonalSusu\PersonalSusuCancellationController;
-use App\Http\Controllers\V1\Susu\PersonalSusu\PersonalSusuCollectionController;
-use App\Http\Controllers\V1\Susu\PersonalSusu\PersonalSusuController;
-use App\Http\Controllers\V1\Susu\PersonalSusu\PersonalSusuCreateController;
+use App\Http\Controllers\V1\Susu\PersonalSusu\Account\PersonalSusuApprovalController;
+use App\Http\Controllers\V1\Susu\PersonalSusu\Account\PersonalSusuCancellationController;
+use App\Http\Controllers\V1\Susu\PersonalSusu\Account\PersonalSusuCollectionController;
+use App\Http\Controllers\V1\Susu\PersonalSusu\Account\PersonalSusuController;
+use App\Http\Controllers\V1\Susu\PersonalSusu\Account\PersonalSusuCreateController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'customers/susus/personal-susus', 'as' => 'customers.susus.personal-susus.', 'middleware' => 'auth:customer'], function (): void {
