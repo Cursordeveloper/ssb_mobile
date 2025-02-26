@@ -7,7 +7,7 @@ namespace Domain\Mobile\Actions\Registration;
 use Domain\Mobile\Jobs\Registration\RegistrationActivationJob;
 use Domain\Mobile\Models\Customer;
 use Domain\Mobile\Services\Registration\RegistrationPersonalInformationService;
-use Domain\Shared\Exceptions\Registration\SystemFailureExec;
+use Domain\Shared\Exceptions\Common\SystemFailureExec;
 use Throwable;
 
 final class RegistrationPersonalInformationAction
