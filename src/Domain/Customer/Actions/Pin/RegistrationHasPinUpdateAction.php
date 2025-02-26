@@ -7,7 +7,7 @@ namespace Domain\Customer\Actions\Pin;
 use Domain\Customer\Services\Registration\CustomerByNumberService;
 use Domain\Mobile\Models\Customer;
 use Domain\Mobile\Services\Registration\RegistrationHasPinUpdateService;
-use Domain\Shared\Exceptions\Registration\SystemFailureExec;
+use Domain\Shared\Exceptions\Common\SystemFailureExec;
 use Throwable;
 
 final class RegistrationHasPinUpdateAction

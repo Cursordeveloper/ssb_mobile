@@ -24,7 +24,7 @@ final class PasswordResetTokenValidationRules implements ValidationRule
         } elseif ($token['token'] === null) {
             $fail('Invalid verification token.');
         } elseif ($token['token_expiration_date'] < Carbon::now()) {
-            $fail('The verification token has expired.');
+            $fail('The token has expired. Please request a new token.');
         }
     }
 }

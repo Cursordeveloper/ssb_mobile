@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Domain\Customer\Services\Registration;
 
 use Domain\Mobile\Models\Customer;
-use Domain\Shared\Exceptions\Registration\SystemFailureExec;
+use Domain\Shared\Exceptions\Common\SystemFailureExec;
 use Illuminate\Support\Str;
 use Throwable;
 
