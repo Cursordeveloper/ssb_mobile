@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\V1\Susu\BizSusu\BizSusuApprovalController;
-use App\Http\Controllers\V1\Susu\BizSusu\BizSusuCancellationController;
-use App\Http\Controllers\V1\Susu\BizSusu\BizSusuCollectionController;
-use App\Http\Controllers\V1\Susu\BizSusu\BizSusuController;
-use App\Http\Controllers\V1\Susu\BizSusu\BizSusuCreateController;
+use App\Http\Controllers\V1\Susu\BizSusu\Account\BizSusuApprovalController;
+use App\Http\Controllers\V1\Susu\BizSusu\Account\BizSusuCancellationController;
+use App\Http\Controllers\V1\Susu\BizSusu\Account\BizSusuCollectionController;
+use App\Http\Controllers\V1\Susu\BizSusu\Account\BizSusuController;
+use App\Http\Controllers\V1\Susu\BizSusu\Account\BizSusuCreateController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'customers/susus/biz-susus', 'as' => 'customers.susus.biz-susus.', 'middleware' => 'auth:customer'], function (): void {
