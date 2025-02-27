@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\V1\Susu\GoalGetterSusu\GoalGetterSusuApprovalController;
-use App\Http\Controllers\V1\Susu\GoalGetterSusu\GoalGetterSusuCancellationController;
-use App\Http\Controllers\V1\Susu\GoalGetterSusu\GoalGetterSusuCollectionController;
-use App\Http\Controllers\V1\Susu\GoalGetterSusu\GoalGetterSusuController;
-use App\Http\Controllers\V1\Susu\GoalGetterSusu\GoalGetterSusuCreateController;
+use App\Http\Controllers\V1\Susu\GoalGetterSusu\Account\GoalGetterSusuApprovalController;
+use App\Http\Controllers\V1\Susu\GoalGetterSusu\Account\GoalGetterSusuCancellationController;
+use App\Http\Controllers\V1\Susu\GoalGetterSusu\Account\GoalGetterSusuCollectionController;
+use App\Http\Controllers\V1\Susu\GoalGetterSusu\Account\GoalGetterSusuController;
+use App\Http\Controllers\V1\Susu\GoalGetterSusu\Account\GoalGetterSusuCreateController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'customers/susus/goal-getter-susus', 'as' => 'customers.susus.goal-getter-susus.', 'middleware' => 'auth:customer'], function (): void {
